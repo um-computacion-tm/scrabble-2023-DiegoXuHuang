@@ -1,4 +1,5 @@
 import unittest
+
 from game.models import (
     BagTiles,
     Tile,
@@ -12,10 +13,10 @@ class TestTiles(unittest.TestCase):
         self.assertEqual(tile.letter, 'A')
         self.assertEqual(tile.value, 1)
 
-    def test_tile(self):
-        tile = Tile('A', 1)
-        self.assertEqual(tile.letter, 'D')
-        self.assertEqual(tile.value, 2)
+    # def test_tile(self):
+    #     tile = Tile('A', 1)
+    #     self.assertEqual(tile.letter, 'D')
+    #     self.assertEqual(tile.value, 2)
 
 
 class TestBagTiles(unittest.TestCase):
@@ -53,7 +54,7 @@ class TestBagTiles(unittest.TestCase):
         put_tiles = [Tile('Z', 1), Tile('Y', 1)]
         bag.put(put_tiles)
         self.assertEqual(
-            len(bag.tiles),
+            len(bag.tiles), 
             7,
         )
 
