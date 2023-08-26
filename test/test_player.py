@@ -9,6 +9,8 @@ class TestPlayer(unittest.TestCase):
             len(player_1.tiles),
             0,
         )
+    
+
 
 
 if __name__ == '__main__':
