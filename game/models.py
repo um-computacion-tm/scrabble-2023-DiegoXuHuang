@@ -1,10 +1,12 @@
 import random
 
+
 class Player:
-    pass    
+    pass
+
 
 class Tile:
-    def __init__(self, letter, value,jugador = None):
+    def __init__(self, letter, value, jugador=None):
         self.letter = letter
         self.value = value
         self.jugador = jugador
@@ -13,13 +15,6 @@ class Tile:
 class BagTiles:
     def __init__(self):
         self.tiles = [
-            Tile("A", 1),
-            Tile("A", 1),
-            Tile("A", 1),
-            Tile("A", 1),
-            Tile("A", 1),
-            Tile("A", 1),
-            Tile("A", 1),
             Tile("A", 1),
             Tile("A", 1),
             Tile("A", 1),
@@ -121,4 +116,6 @@ class BagTiles:
         return tiles
 
     def put(self, tiles):
-         self.tiles.extend(tiles)
+        self.tiles.extend(tiles)
+
+
