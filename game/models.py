@@ -1,15 +1,5 @@
 import random
-
-
-class Player:
-    pass
-
-
-class Tile:
-    def __init__(self, letter, value, jugador=None):
-        self.letter = letter
-        self.value = value
-        self.jugador = jugador
+from game.tile import Tile
 
 
 class BagTiles:
