@@ -4,8 +4,8 @@ from game.tile import Tile
 class TestTile(unittest.TestCase):
 
     def test_get_value(self):
-        self.assertEqual(self.tile_A.get_value(), 1)
-        self.assertEqual(self.tile.get_value(), 10)
+        tile = Tile("A", 1)
+        self.assertEqual(tile.get_value(), 1)
    
 
     def test_get_letter(self):
