@@ -1,4 +1,3 @@
-
 class Tile:
     def __init__(self, letter:str, value:int, player=None):
         self.letter = letter
@@ -8,5 +7,4 @@ class Tile:
     def get_letter(self):
         return self.letter
 
-    # def get_value(self):
-    #     return self.value
+ 
