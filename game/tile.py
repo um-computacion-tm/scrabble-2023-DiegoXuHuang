@@ -6,5 +6,8 @@ class Tile:
 
     def get_letter(self):
         return self.letter
+    
+    def get_value(self):
+        return self.value
 
  
