@@ -2,15 +2,15 @@ import unittest
 from game.scrabble import ScrabbleGame
 
 
-# class TestScrabbleGame(unittest.TestCase):
-#     def test_init(self): #el contructor ya obliga que haya jugadores = 3
-#         scrabble_game = ScrabbleGame(players_count=3)
-#         self.assertIsNotNone(scrabble_game.board)
-#         self.assertEqual(
-#             len(scrabble_game.players),
-#             3,
-#         )
-#         self.assertIsNotNone(scrabble_game.bag_tiles)
+class TestScrabbleGame(unittest.TestCase):
+    def test_init(self): #el contructor ya obliga que haya jugadores = 3
+        scrabble_game = ScrabbleGame(players_count=3)
+        self.assertIsNotNone(scrabble_game.board)
+        self.assertEqual(
+            len(scrabble_game.players),
+            3,
+        )
+        self.assertIsNotNone(scrabble_game.bag_tiles)
 
 #     def test_next_turn_when_game_is_starting(self):
 #         #Validar que al comienzo, el turno es del jugador 0
