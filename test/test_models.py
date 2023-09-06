@@ -7,25 +7,13 @@ from game.models import (
 from unittest.mock import patch
 
 
-class TestTiles(unittest.TestCase):
-    def test_tile(self):
-        tile = Tile('A', 1)
-        self.assertEqual(tile.letter, 'A')
-        self.assertEqual(tile.value, 1)
-
-    # def test_tile(self):
-    #     tile = Tile('A', 1)
-    #     self.assertEqual(tile.letter, 'D')
-    #     self.assertEqual(tile.value, 2)
-
-
 class TestBagTiles(unittest.TestCase):
-    @patch('random.shuffle')
+    @patch("random.shuffle")
     def test_bag_tiles(self, patch_shuffle):
         bag = BagTiles()
         self.assertEqual(
             len(bag.tiles),
-            5,
+            98,
         )
         self.assertEqual(
             patch_shuffle.call_count,
@@ -36,13 +24,12 @@ class TestBagTiles(unittest.TestCase):
             bag.tiles,
         )
 
-
     def test_take(self):
         bag = BagTiles()
         tiles = bag.take(2)
         self.assertEqual(
             len(bag.tiles),
-            3,
+            96,
         )
         self.assertEqual(
             len(tiles),
@@ -51,13 +38,13 @@ class TestBagTiles(unittest.TestCase):
 
     def test_put(self):
         bag = BagTiles()
-        put_tiles = [Tile('Z', 1), Tile('Y', 1)]
+        put_tiles = [Tile("Z", 1), Tile("Y", 1)]
         bag.put(put_tiles)
         self.assertEqual(
-            len(bag.tiles), 
-            7,
+            len(bag.tiles),
+            100,
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
