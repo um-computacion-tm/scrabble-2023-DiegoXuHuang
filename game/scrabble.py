@@ -13,8 +13,12 @@ class ScrabbleGame:
 
         self.current_player = None
 
-    # def next_turn():
-    #     if self.current_player = self.players[0]
+    def next_turn(self):
+        if self.current_player is None:
+            self.current_player = self.players[0]
+        else:
+            index = self.players.index(self.current_player) + 1
+            self.current_player = self.player[index]
 
     
     
