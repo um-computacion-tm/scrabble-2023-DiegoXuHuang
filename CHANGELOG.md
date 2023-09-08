@@ -26,8 +26,10 @@
 17/08 Add the scrabble folder to the repository
 
 # Fixed
+08/09 fixed next_turn
+
 27/08 fixed the test player
 
-09/08 fixed next_turn
+
 
 
