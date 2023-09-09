@@ -4,73 +4,73 @@
 
 # [0.1.4] 2023-09-09
 
-# Added
+-Added
     .add method validate_word_inside_board and test
 
 # [0.1.3] 2023-09-07
     
-# Added
+-Added
     .add method next_turn
 
 # [0.1.2] 2023-09-08
 
-# Fixed
+-Fixed
     .fixed next_turn
 
 # [0.1.1] 2023-09-06
 
-# Added
+-Added
     .git pull in branch main
 
 # [0.1.0] 2023-09-05
 
-# Added
+-Added
     .add codeclimate
 
 # [0.0.9] 2023-08-31
 
-# Added
+-Added
     .add READEME.md
 
 # [0.0.8] 2023-08-28
 
-# Added
+-Added
     .add method tileget_letter and test
 
 # [0.0.7] 2023-08-27
 
-# Added
+-Added
     .add class tile and test
 
-# fixed
+-fixed
     .fixed the test player
 
 # [0.0.6] 2023-08-26
 
-# Added
+-Added
     .add scores in class player
 
 # [0.0.5] 2023-08-24
 
-# Added
+-Added
     .add circleci and requirements
 
 # [0.0.4] 2023-08-23
 
-# Added
+-Added
     .Add class board, player, cell, scrabble and tests
 
 # [0.0.3] 2023-08-20
 
-# Added
+-Added
     .Add scores to tiles
 
 # [0.0.2] 2023-08-18
 
-# Added
+-Added
     .Add coveragerc and test
 
 # [0.0.1] 2023-08-17
 
-# Added
+-Added
     .Add the scrabble folder to the repository
