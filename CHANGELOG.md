@@ -1,35 +1,76 @@
 # CHANGELOG
 
+
+
+# [0.1.4] 2023-09-09
+
 # Added
-07/09 add method next_turn 
+    .add method validate_word_inside_board and test
 
-06/09 git pull in branch main
+# [0.1.3] 2023-09-07
+    
+# Added
+    .add method next_turn
 
-05/09 add codeclimate
-
-31/08 add READEME.md
-
-28/08 add method tileget_letter and test
-
-27/08 add class tile and test
-
-26/08 add scores in class player
-
-24/08 add circleci and requirements
-
-23/08 Add class board, player, cell, scrabble and tests
-
-20/08 Add scores to tiles
-
-18/02 Add coveragerc and test
-
-17/08 Add the scrabble folder to the repository
+# [0.1.2] 2023-09-08
 
 # Fixed
-08/09 fixed next_turn
+    .fixed next_turn
 
-27/08 fixed the test player
+# [0.1.1] 2023-09-06
 
+# Added
+    .git pull in branch main
 
+# [0.1.0] 2023-09-05
 
+# Added
+    .add codeclimate
 
+# [0.0.9] 2023-08-31
+
+# Added
+    .add READEME.md
+
+# [0.0.8] 2023-08-28
+
+# Added
+    .add method tileget_letter and test
+
+# [0.0.7] 2023-08-27
+
+# Added
+    .add class tile and test
+
+# fixed
+    .fixed the test player
+
+# [0.0.6] 2023-08-26
+
+# Added
+    .add scores in class player
+
+# [0.0.5] 2023-08-24
+
+# Added
+    .add circleci and requirements
+
+# [0.0.4] 2023-08-23
+
+# Added
+    .Add class board, player, cell, scrabble and tests
+
+# [0.0.3] 2023-08-20
+
+# Added
+    .Add scores to tiles
+
+# [0.0.2] 2023-08-18
+
+# Added
+    .Add coveragerc and test
+
+# [0.0.1] 2023-08-17
+
+# Added
+    .Add the scrabble folder to the repository
