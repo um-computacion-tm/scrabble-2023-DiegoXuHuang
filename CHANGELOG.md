@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.1.5] 2023-09-10
+
+### Added
+
+
+- add method calculate word value, not fixed when idle
+
 ## [0.1.4] 2023-09-09
 
 ### Added 
@@ -9,19 +16,19 @@ All notable changes to this project will be documented in this file
 
 - add method validate_word_inside_board and test
 
-## [0.1.3] 2023-09-07
-    
-### Added
-
-
-- add method next_turn
-
 ## [0.1.2] 2023-09-08
 
 ### Fixed
 
 
 - fixed next_turn
+
+## [0.1.3] 2023-09-07
+    
+### Added
+
+
+- add method next_turn
 
 ## [0.1.1] 2023-09-06
 
