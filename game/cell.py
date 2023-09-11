@@ -1,11 +1,11 @@
 from game.tile import Tile
 
 class Cell:
-    def __init__(self, multiplier=1, multiplier_type='', letter=None):
+    def __init__(self, multiplier=1, multiplier_type='letter', letter=None, active = True):
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
         self.letter = letter
-        # self.activate = 
+        self.active = active
 
     def add_letter(self, letter:Tile):
         self.letter = letter
