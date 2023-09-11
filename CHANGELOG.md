@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.1.6] 2023-09-11
+
+### Fixed
+
+
+-  solved test_with_letter_word_multiplier_no_active "passed"
+
 ## [0.1.5] 2023-09-10
 
 ### Added
