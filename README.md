@@ -9,3 +9,7 @@ scrabble-2023-DiegoXuHuang created by GitHub Classroom
 [![Maintainability](https://api.codeclimate.com/v1/badges/5cecdd26079c4eddf2de/maintainability)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-DiegoXuHuang/maintainability)
 # Coverage
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5cecdd26079c4eddf2de/test_coverage)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-DiegoXuHuang/test_coverage)
+
+
+# Author 
+## Xu Huang Diego 62225(Legajo)

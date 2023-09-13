@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.1.7] 2023-09-13 (sprint)
+
+### Added
+
+
+- add author in README.md
+
 ## [0.1.6] 2023-09-11
 
 ### Fixed
