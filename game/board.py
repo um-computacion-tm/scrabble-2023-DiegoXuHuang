@@ -7,6 +7,7 @@ class Board:
             [ Cell(1, '') for _ in range(15) ]
             for _ in range(15)
         ]
+        #self.grid = [[None for _ in range(15)] for _ in range(15)]
 
 
     def calculate_word_value(self, word):
@@ -28,9 +29,6 @@ class Board:
         return total_value * word_multiplier
 
 
-        
-
-
     def validate_word_inside_board(self, word, location, orientation):
         x, y = location
         if orientation == "H":
@@ -40,3 +38,22 @@ class Board:
             if x < 0 or x + len(word) > 15 or y < 0 or y >= 15:
                 return False
         return True
+    
+
+    # def is_empty(self):
+    #     for row in self.grid:
+    #         for tile in row:
+    #             if tile != ' ':
+    #                 return False
+    #     return True
+
+    def is_empty(self):
+        for row in self.grid:
+            for cell in row:
+                if cell is not None:
+                    return False
+        return True
+
+
+    # def validate_word_place_board(self):
+    #     pass

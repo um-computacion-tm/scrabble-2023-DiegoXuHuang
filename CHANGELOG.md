@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file
 
 
 - add author in README.md
+- add is_empty method but it doesn't work when the board is empty = True (pending to be resolved)
 
 ## [0.1.6] 2023-09-11
 
@@ -58,7 +59,7 @@ All notable changes to this project will be documented in this file
 
 - add codeclimate
 
-## [0.0.9] 2023-08-31
+## [0.0.9] 2023-08-31 (sprint)
 
 ### Added
 
@@ -119,7 +120,7 @@ All notable changes to this project will be documented in this file
 
 - Add coveragerc and test
 
-## [0.0.1] 2023-08-17
+## [0.0.1] 2023-08-17 (sprint)
 
 ### Added
 
