@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.1.8] 2023-09-14 
+
+### Fixed
+
+
+- Fixed is_empty problem
+
 ## [0.1.7] 2023-09-13 (sprint)
 
 ### Added

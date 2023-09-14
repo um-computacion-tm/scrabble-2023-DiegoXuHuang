@@ -3,10 +3,7 @@ from game.cell import Cell
 
 class Board:
     def __init__(self):
-        self.grid = [
-            [ Cell(1, '') for _ in range(15) ]
-            for _ in range(15)
-        ]
+        self.grid = [ [ Cell(1, '') for _ in range(15) ] for _ in range(15) ]
         #self.grid = [[None for _ in range(15)] for _ in range(15)]
 
 
@@ -41,18 +38,20 @@ class Board:
     
 
     # def is_empty(self):
-    #     for row in self.grid:
-    #         for tile in row:
-    #             if tile != ' ':
-    #                 return False
-    #     return True
-
+        # for row in self.grid:
+        #     for tile in row:
+        #         if tile != ' ':
+        #             return False
+        # return True
+    
     def is_empty(self):
-        for row in self.grid:
-            for cell in row:
-                if cell is not None:
-                    return False
-        return True
+        
+        if self.grid[7][7].letter == None:
+            self.is_empty = True
+        else:
+            self.is_empty = False
+
+
 
 
     # def validate_word_place_board(self):
