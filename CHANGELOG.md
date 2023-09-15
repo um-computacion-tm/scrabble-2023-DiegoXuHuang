@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.1.8] 2023-09-15
+
+### Added
+
+
+- add main
+- add validate method that is not yet defined
+- add get_words method that is not yet defined
+- add put_words method that is not yet defined
+
 ## [0.1.8] 2023-09-14 
 
 ### Fixed
