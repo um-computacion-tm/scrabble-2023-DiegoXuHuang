@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.1.9] 2023-09-21
+
+### Added
+
+
+- add diccionary
+
 ## [0.1.8] 2023-09-15
 
 ### Added
