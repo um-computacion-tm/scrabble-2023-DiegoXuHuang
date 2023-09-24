@@ -51,6 +51,18 @@ class Board:
         else:
             self.is_empty = False
 
+    def check_word(self,word, file_path):
+        wordletter = ""
+        for _ in word:
+            wordletter += _.letter.letter
+        wordletter = wordletter.lower()
+        with open(file_path, "r") as file:
+            words = file.read().splitlines()
+            if wordletter in words:
+                return True
+            else:
+                return False
+
 
 
 

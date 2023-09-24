@@ -2,12 +2,20 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.0] 2023-09-24
+
+### Added
+
+
+- add method check word in class Boars
+- add test dicionary and diccionario txt 
+
 ## [0.1.9] 2023-09-21
 
 ### Added
 
 
-- add diccionary
+- add dicionary
 
 ## [0.1.8] 2023-09-15
 
