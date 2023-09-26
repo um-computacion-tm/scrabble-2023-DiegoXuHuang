@@ -3,7 +3,7 @@ class Tile:
         self.letter = letter
         self.value = value
         self.player = player
-
+        
     def get_letter(self):
         return self.letter
     
