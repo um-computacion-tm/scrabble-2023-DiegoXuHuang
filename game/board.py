@@ -1,10 +1,11 @@
 from game.cell import Cell
+from game.tile import Tile
 
 
 class Board:
     def __init__(self):
         self.grid = [ [ Cell(1, '') for _ in range(15) ] for _ in range(15) ]
-        #self.grid = [[None for _ in range(15)] for _ in range(15)]
+        
 
 
     def calculate_word_value(self, word):
@@ -37,20 +38,6 @@ class Board:
         return True
     
 
-    # def is_empty(self):
-        # for row in self.grid:
-        #     for tile in row:
-        #         if tile != ' ':
-        #             return False
-        # return True
-    
-    def is_empty(self):
-        
-        if self.grid[7][7].letter == None:
-            self.is_empty = True
-        else:
-            self.is_empty = False
-
     def check_word(self,word, file_path):
         wordletter = ""
         for _ in word:
@@ -64,7 +51,37 @@ class Board:
                 return False
 
 
+    def is_empty(self):
+        
+        if self.grid[7][7].letter == None:
+            self.is_empty = True
+        else:
+            self.is_empty = False
+
+    # hay que arreglar
+    def validate_word_place_board(self, word, location, orientation):
+        fila, columna = location  # 8,6
+        if orientation == "H":
+            for i in range(len(word) + 1):  # "Facultad"
+                l = self.grid[fila][columna + 1].letter
+                columna += 1
+                if l:
+                    if l != word[i]:
+                        return False
+            return True
+        elif orientation == "V":
+            if x < 0 or x + len(word) > 15 or y < 0 or y >= 15:
+                return False
+        return True
+
+  
 
 
-    # def validate_word_place_board(self):
-    #     pass
+ 
+
+
+
+    
+
+
+ 
