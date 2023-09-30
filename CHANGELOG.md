@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.2] 2023-09-29 (sprint)
+
+### Added
+
+
+- add method validate letter in Player and method validate_word in scrabble
+
 ## [0.2.1] 2023-09-25
 
 ### Added
