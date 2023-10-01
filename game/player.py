@@ -3,10 +3,13 @@ class Player:
         self.tiles = []
         self.score = score
     #nuevo 
-    def validate_letter(self, letter):
-        if letter in self.tiles:
-            return True
-        return False
+    # def validate_letter(self, letter):
+    #     if letter in self.tiles:
+    #         return True
+    #     return False
+
+
+    #--------
 
     # def __init__(self, bag_tiles):
     #     self.tiles = bag_tiles.take(7)

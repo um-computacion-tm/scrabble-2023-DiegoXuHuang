@@ -59,20 +59,20 @@ class Board:
             self.is_empty = False
 
     # hay que arreglar
-    def validate_word_place_board(self, word, location, orientation):
-        fila, columna = location  # 8,6
-        if orientation == "H":
-            for i in range(len(word) + 1):  # "Facultad"
-                l = self.grid[fila][columna + 1].letter
-                columna += 1
-                if l:
-                    if l != word[i]:
-                        return False
-            return True
-        elif orientation == "V":
-            if x < 0 or x + len(word) > 15 or y < 0 or y >= 15:
-                return False
-        return True
+    # def validate_word_place_board(self, word, location, orientation):
+    #     fila, columna = location  # 8,6
+    #     if orientation == "H":
+    #         for i in range(len(word) + 1):  # "Facultad"
+    #             l = self.grid[fila][columna + 1].letter
+    #             columna += 1
+    #             if l:
+    #                 if l != word[i]:
+    #                     return False
+    #         return True
+    #     elif orientation == "V":
+    #         if x < 0 or x + len(word) > 15 or y < 0 or y >= 15:
+    #             return False
+    #     return True
 
   
 

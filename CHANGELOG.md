@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.3] 2023-10-01
+
+### Removed
+
+
+- removed validate letter and validate word for now to improve it later.
+
+### Changed
+
+
+- changed dictiomary and test
+
+
 ## [0.2.2] 2023-09-29 (sprint)
 
 ### Added
