@@ -18,7 +18,7 @@ class TestBoard(unittest.TestCase):
 
 #------------------------------------------
 
-    def test_word_inside_board(self):
+    def test_word_inside_board_horizontal(self):
         board = Board()
         word = "Facultad"
         location = (5, 4)
@@ -27,16 +27,40 @@ class TestBoard(unittest.TestCase):
         word_is_valid = board.validate_word_inside_board(word, location, orientation)
 
         assert word_is_valid == True
+
+    def test_word_inside_board_vertical(self):
+        board = Board()
+        word = "Facultad"
+        location = (5, 4)
+        orientation = "V"
+
+        word_is_valid = board.validate_word_inside_board(word, location, orientation)
+
+        assert word_is_valid == True
     
-    def test_word_out_of_board(self):
+    def test_word_out_of_board_horizontal(self):
         board = Board()
         word = "Facultad"
         location = (14, 4)
+        orientation = "H"
+
+        word_is_valid = board.validate_word_inside_board(word, location, orientation)
+
+        assert word_is_valid == False
+
+    def test_word_out_of_board_vertical(self):
+        board = Board()
+        word = "Facultad"
+        location = (4, 14)
         orientation = "V"
 
         word_is_valid = board.validate_word_inside_board(word, location, orientation)
 
         assert word_is_valid == False
+
+    
+
+    
 
 # falta testear vertical
 
@@ -99,11 +123,23 @@ class TestBoard(unittest.TestCase):
     #     board.grid[8][7].add_letter(Tile('A', 1)) 
     #     board.grid[9][7].add_letter(Tile('S', 1)) 
     #     board.grid[10][7].add_letter(Tile('A', 1)) 
-    #     word = "Facultad"
+    #     word = "Facultad"   
     #     location = (8, 6)
     #     orientation = "H"
     #     word_is_valid = board.validate_word_place_board(word, location, orientation)
     #     assert word_is_valid == True
+
+    # def test_place_word_not_empty_board_vertical_not_fine(self):
+    #     board = Board()
+    #     board.grid[7][7].add_letter(Tile('C', 1))
+    #     board.grid[7][8].add_letter(Tile('A', 1)) 
+    #     board.grid[7][9].add_letter(Tile('S', 1)) 
+    #     board.grid[7][10].add_letter(Tile('A', 1)) 
+    #     word = "HOLA"
+    #     location = (6, 8)
+    #     orientation = "V"
+    #     word_is_valid = board.validate_word_place_board(word, location, orientation)
+    #     assert word_is_valid == False
 
     
 
