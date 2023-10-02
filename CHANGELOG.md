@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.4] 2023-10-02
+
+### Added
+
+
+- Add test_word_inside_board_vertical and outside
+
+### Fixed
+
+- Fixed validate word inside board because Im not add the vertical tests
+
 ## [0.2.3] 2023-10-01
 
 ### Removed

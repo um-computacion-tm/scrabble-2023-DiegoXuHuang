@@ -9,6 +9,7 @@ class Board:
 
 
     def calculate_word_value(self, word):
+    #calcular valor de la palabra
         total_value = 0
         word_multiplier = 1
 
@@ -26,53 +27,65 @@ class Board:
 
         return total_value * word_multiplier
 
-
-    def validate_word_inside_board(self, word, location, orientation):
-        x, y = location
-        if orientation == "H":
-            if x < 0 or x >= 15 or y < 0 or y + len(word) > 15:
-                return False
-        elif orientation == "V":
-            if x < 0 or x + len(word) > 15 or y < 0 or y >= 15:
-                return False
-        return True
     
+    
+    def validate_word_inside_board(self, word, location, orientation):
+    # verifica que la palabra este dentro del trablero
+        self.orientation = orientation
+        self.position_x = location[0]
+        self.position_y = location[1] 
 
-    def check_word(self,word, file_path):
-        wordletter = ""
-        for _ in word:
-            wordletter += _.letter.letter
-        wordletter = wordletter.lower()
-        with open(file_path, "r") as file:
-            words = file.read().splitlines()
-            if wordletter in words:
-                return True
-            else:
-                return False
+        #x, y = location
+        len_word = len(word)
+        board_size = 15  # Tamaño del tablero 15x15
+
+        if orientation == "H" and self.position_x + len_word <= board_size:
+            return True
+        elif orientation == "V" and self.position_y + len_word <= board_size:
+            return True
+
+        return False
+
 
 
     def is_empty(self):
-        
+    # verifica que el tablero este vacio
+    
         if self.grid[7][7].letter == None:
             self.is_empty = True
         else:
             self.is_empty = False
 
-    # hay que arreglar
-    # def validate_word_place_board(self, word, location, orientation):
-    #     fila, columna = location  # 8,6
-    #     if orientation == "H":
-    #         for i in range(len(word) + 1):  # "Facultad"
-    #             l = self.grid[fila][columna + 1].letter
-    #             columna += 1
-    #             if l:
-    #                 if l != word[i]:
-    #                     return False
-    #         return True
-    #     elif orientation == "V":
-    #         if x < 0 or x + len(word) > 15 or y < 0 or y >= 15:
-    #             return False
-    #     return True
+
+ 
+
+
+    
+
+
+
+
+   
+    
+  
+
+    
+
+
+
+   
+
+        
+        
+    
+
+
+
+
+
+
+
+
 
   
 
