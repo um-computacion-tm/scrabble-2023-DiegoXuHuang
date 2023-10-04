@@ -1,7 +1,30 @@
+from game.tile import Tile
+from game.models import BagTiles
+
+
+
+
 class Player:
-    def __init__(self, score = 0):
+    def __init__(self, score = 0,):
         self.tiles = []
-        self.score = score
+        self.score = score  
+        #self.id = id
+
+
+    def take_tiles(self, bag: BagTiles, amount):
+        taken_tiles = bag.take(amount)
+        for tile in taken_tiles:
+            self.tiles.append(tile)
+
+    def increment_score(self,amount):
+        self.score += amount
+
+    def get_score(self):
+        return self.score
+    
+
+
+                
     #nuevo 
     # def validate_letter(self, letter):
     #     if letter in self.tiles:

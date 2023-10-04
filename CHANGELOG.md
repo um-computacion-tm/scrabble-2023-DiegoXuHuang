@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.5] 2023-10-04
+
+### Added
+
+
+- Add method (and test) take tiles, increment score and get sccore in class Player
+
 ## [0.2.4] 2023-10-02
 
 ### Added
@@ -26,7 +33,7 @@ All notable changes to this project will be documented in this file
 - changed dictiomary and test
 
 
-## [0.2.2] 2023-09-29 (sprint)
+## [0.2.2] 2023-09-29 (sprint 1.5)
 
 ### Added
 
@@ -72,7 +79,7 @@ All notable changes to this project will be documented in this file
 
 - Fixed is_empty problem
 
-## [0.1.7] 2023-09-13 (sprint)
+## [0.1.7] 2023-09-13 (sprint 1)
 
 ### Added
 
@@ -129,7 +136,7 @@ All notable changes to this project will be documented in this file
 
 - add codeclimate
 
-## [0.0.9] 2023-08-31 (sprint)
+## [0.0.9] 2023-08-31 (sprint 0.5)
 
 ### Added
 
