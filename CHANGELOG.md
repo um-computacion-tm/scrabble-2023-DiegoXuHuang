@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.6] 2023-10-08
+
+### Added
+
+- Add method end game
+- Add repr tile
+- Add repr Cell
+
 ## [0.2.5] 2023-10-04
 
 ### Added
