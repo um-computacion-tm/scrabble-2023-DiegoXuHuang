@@ -3,6 +3,7 @@ from game.player import Player
 from game.models import BagTiles
 
 
+
 class ScrabbleGame:
     def __init__(self, players_count):
         self.board = Board()
@@ -12,10 +13,11 @@ class ScrabbleGame:
             self.players.append(Player())
 
         self.current_player = None
-        #self.turn = 0
+        self.turn = 0
 
-    #def playing(self):
-        #retur True
+    # def playing(self):
+    #     return True
+
 
     def next_turn(self):
         if self.current_player is None:
@@ -24,19 +26,29 @@ class ScrabbleGame:
             index = (self.players.index(self.current_player) + 1) % len(self.players)
             self.current_player = self.players[index]
 
+
+    
+    def end_game(self):
+        if len(self.bag_tiles) == 0:
+            return True
+        return False
+  
+        
+
+    
     
     # def validate_word(self, word, location, orientation):
-    #     '''
-    #     1- Validar que usuario tiene esas letras
-    #     2- Validar que la palabra entra en el tablero
-    #     '''
+    #     # '''
+    #     # 1- Validar que usuario tiene esas letras
+    #     # 2- Validar que la palabra entra en el tablero
+    #     # '''
     # #nuevo, arreglar para que el coverage pase a 100%
     #     if self.board.validate_word_inside_board(word,location,orientation):
     #         letter = word[location]
     #         if self.current_player.validate_letter(letter):
     #             return ""
     #     raise ValueError("letra no valida")
-        #self.board.validate_word_inside_board(word, location, orientation)
+    #     self.board.validate_word_inside_board(word, location, orientation)
     
 
     #---------------------------
@@ -50,3 +62,4 @@ class ScrabbleGame:
     #     '''
     #     Modifica el estado del tablero con las palabras consideradas como correctas
     #     '''
+

@@ -1,11 +1,21 @@
 from game.tile import Tile
 
+
 class Cell:
-    def __init__(self, multiplier=1, multiplier_type='letter', letter=None, active = True):
+    def __init__(self, multiplier=1, multiplier_type='letter', letter=None, active=True):
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
-        self.letter = letter
         self.active = active
+        self.letter = letter
+
+
+    def __repr__(self):
+        if self.tile:
+            return repr(self.tile)
+        if self.multiplier > 1:
+            return f'{"W" if self.multiplier_type == "word" else "L"}x{self.multiplier}'
+        else:
+            return '   '
 
     def add_letter(self, letter:Tile):
         self.letter = letter
@@ -17,3 +27,10 @@ class Cell:
             return self.letter.value * self.multiplier
         else:
             return self.letter.value
+        
+    
+        
+    # def show_player(player_index, player):
+    #     print(f"player #{player_index}: {player.tile}")
+
+    

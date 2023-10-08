@@ -1,5 +1,6 @@
 import unittest
-from game.scrabble import ScrabbleGame
+from game.scrabble import ScrabbleGame, Board
+from game.models import *
 
 
 class TestScrabbleGame(unittest.TestCase):
@@ -35,5 +36,19 @@ class TestScrabbleGame(unittest.TestCase):
         scrabble_game.next_turn()
 
         assert scrabble_game.current_player == scrabble_game.players[0]
+
+    def test_end_game(self):
+        scrabble_game = ScrabbleGame(players_count=4)
+        scrabble_game.bag_tiles = []  
+        self.assertTrue(scrabble_game.end_game())
+
+
+    
+
+
+    
+        
+
+
 if __name__ == '__main__':
     unittest.main()

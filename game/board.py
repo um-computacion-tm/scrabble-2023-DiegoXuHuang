@@ -1,5 +1,5 @@
 from game.cell import Cell
-from game.tile import Tile
+#from game.dictionary import validate_word
 
 
 class Board:
@@ -28,7 +28,7 @@ class Board:
         return total_value * word_multiplier
 
     
-    
+
     def validate_word_inside_board(self, word, location, orientation):
     # verifica que la palabra este dentro del trablero
         self.orientation = orientation
@@ -45,6 +45,7 @@ class Board:
             return True
 
         return False
+    
 
 
 
@@ -57,7 +58,9 @@ class Board:
             self.is_empty = False
 
 
- 
+
+   
+
 
 
     

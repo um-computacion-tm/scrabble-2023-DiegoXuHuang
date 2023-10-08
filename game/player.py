@@ -24,6 +24,7 @@ class Player:
     
 
 
+
                 
     #nuevo 
     # def validate_letter(self, letter):
