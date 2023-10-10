@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.7] 2023-10-10
+
+### Added 
+
+
+- Add method and test refill player
+- Add method has letter 
+
 ## [0.2.6] 2023-10-08
 
 ### Added
