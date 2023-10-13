@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-13 (sprint 2)
+
+### Added
+
+- Add method add_premium_cells in board
+
 ## [0.2.7] 2023-10-10
 
 ### Added 
