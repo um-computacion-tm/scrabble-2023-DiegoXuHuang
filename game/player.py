@@ -8,7 +8,14 @@ class Player:
     def __init__(self, score = 0,):
         self.tiles = []
         self.score = score  
+        self.name = ""
         #self.id = id
+    
+    def set_name(self, name):
+        self.name = name
+    
+    def get_name(self):
+        return self.name
 
 
     def take_tiles(self, bag: BagTiles, amount):
@@ -16,13 +23,12 @@ class Player:
         for tile in taken_tiles:
             self.tiles.append(tile)
 
-    def increment_score(self,amount):
-        self.score += amount
+    def increase_score(self,increase):
+        self.score += increase
 
 
     def get_score(self):
         return self.score
-    
     
     
     def refill(self, bag: BagTiles):
@@ -34,8 +40,6 @@ class Player:
     
         # Extiende la lista "self.tiles" con las nuevas fichas obtenidas.
         self.tiles.extend(new_tiles)
-
-    
 
     
     def has_letters(self, tiles=[]):

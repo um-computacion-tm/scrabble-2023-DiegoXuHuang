@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-14
+
+### Added
+
+
+- Add method set name,get name
+
 ## [0.2.8] 2023-10-13 (sprint 2)
 
 ### Added

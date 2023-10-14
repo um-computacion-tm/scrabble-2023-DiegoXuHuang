@@ -13,6 +13,11 @@ class TestPlayer(unittest.TestCase):
             0,
         )
 
+    def test_set_name(self):
+        player = Player()
+        player.set_name('Diego')
+        self.assertEqual(player.get_name(), 'Diego')
+
     def test_take_tiles(self):
         player=Player()
         bag = BagTiles()
@@ -22,7 +27,7 @@ class TestPlayer(unittest.TestCase):
 
     def test_score(self):
         player = Player()
-        player.increment_score(5)
+        player.increase_score(5)
         self.assertEqual(player.get_score(), 5)
 
     
