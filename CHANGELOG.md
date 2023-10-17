@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-17
+
+### Added
+
+
+- Add cli, method get_player count and test
+
 ## [0.2.8] 2023-10-14
 
 ### Added
