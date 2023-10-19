@@ -1,7 +1,7 @@
 import unittest
 from game.board import Board
 from game.tile import Tile
-
+from game.cell import Cell
 
 
 class TestBoard(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestBoard(unittest.TestCase):
 #------------------------------------------
 
     def test_word_inside_board_horizontal(self):
-        board = Board()
+        board = Board() 
         word = "Facultad"
         location = (5, 4)
         orientation = "H"
@@ -142,9 +142,18 @@ class TestBoard(unittest.TestCase):
     #     assert word_is_valid == False
     
    
-
+#------------
 
     
+    
+
+ 
+
+   
+ 
+
+   
+
 
 
 

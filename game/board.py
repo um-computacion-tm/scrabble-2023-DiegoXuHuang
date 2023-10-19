@@ -1,13 +1,14 @@
 from game.cell import Cell
-#from game.dictionary import validate_word
+from game.tile import Tile
+
 
 
 class Board:
     def __init__(self):
         self.grid = [ [ Cell(1, '') for _ in range(15) ] for _ in range(15) ]
         self.add_premium_cells()
-        #self.grid[7][7] = " * "
 
+    
 
     def calculate_word_value(self, word):
     #calcular valor de la palabra
@@ -27,6 +28,8 @@ class Board:
             total_value += tile_value
 
         return total_value * word_multiplier
+    
+    
     
     def add_premium_cells(self):
         #Agrega todos los cuadrados premium que influyen en la puntuación de la palabra.
@@ -49,27 +52,26 @@ class Board:
     def validate_word_inside_board(self, word, location, orientation):
     # verifica que la palabra este dentro del trablero
         self.orientation = orientation
-        self.position_x = location[0]
-        self.position_y = location[1] 
+        self.position_row = location[0]
+        self.position_col = location[1]
 
         #x, y = location
         len_word = len(word)
         board_size = 15  # Tamaño del tablero 15x15
 
-        if orientation == "H" and self.position_x + len_word <= board_size:
+        if orientation == "H" and self.position_row + len_word <= board_size:
             return True
-        elif orientation == "V" and self.position_y + len_word <= board_size:
+        elif orientation == "V" and self.position_col + len_word <= board_size:
             return True
 
         return False
     
 
-
-
-
-    def is_empty(self):
-    # verifica que el tablero este vacio
     
+    
+    
+    def is_empty(self):
+        # verifica que el tablero este vacio
         if self.grid[7][7].letter == None:
             self.is_empty = True
         else:
@@ -78,36 +80,51 @@ class Board:
 
 
 
+    #test
+    def show_board(board):
+        print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(15)]))
+        for row_index, row in enumerate(board.grid):
+            print(
+                str(row_index).rjust(2) +
+                '| ' +
+                ' '.join([repr(cell) for cell in row])
+            )
+
+
+
+    
+    
+
+
+
+ 
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+
+    
+   
+    
+
+
 
    
 
 
 
     
-
-
-
-
-   
-    
-  
-
-    
-
-
-
-   
-
-        
-        
-    
-
-
-
-
-
-
-
 
 
   

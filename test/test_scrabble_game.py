@@ -42,11 +42,10 @@ class TestScrabbleGame(unittest.TestCase):
         scrabble_game.bag_tiles = []  
         self.assertTrue(scrabble_game.end_game())
 
+ 
 
     
 
-
-    
         
 
 

@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file
 ### Added
 - Add ,method and test exchege_tile in player
 - Add get tiles and show tiles
+- Add dockerfile, and fixed codelimate
 
 ## [0.2.8] 2023-10-17
 

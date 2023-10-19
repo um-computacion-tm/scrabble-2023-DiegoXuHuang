@@ -1,6 +1,15 @@
 import random
 from game.tile import Tile
 
+# class Tile:
+#     def __init__(self, letter: str, value):
+#         self.letter = letter
+#         self.value = value
+
+#     def __repr__(self):
+#         return f"Tile(letter='{self.letter}', value={self.value})"
+
+
 
 class BagTiles:
     def __init__(self):
