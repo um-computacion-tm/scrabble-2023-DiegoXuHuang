@@ -2,21 +2,30 @@ from game.tile import Tile
 from game.models import BagTiles
 
 
-
+class NoSuficienteFichasException(Exception):
+    pass
 
 class Player:
     def __init__(self, score = 0,):
         self.tiles = []
         self.score = score  
         self.name = ""
-        #self.id = id
+      
     
     def set_name(self, name):
         self.name = name
     
     def get_name(self):
         return self.name
+    
 
+
+    def get_tiles(self, bag: BagTiles, amount):
+        self.tiles += bag.take(amount)
+
+
+    def show_tiles(self):
+        return self.tiles
 
     def take_tiles(self, bag: BagTiles, amount):
         taken_tiles = bag.take(amount)
@@ -41,6 +50,8 @@ class Player:
         # Extiende la lista "self.tiles" con las nuevas fichas obtenidas.
         self.tiles.extend(new_tiles)
 
+
+
     
     def has_letters(self, tiles=[]):
         # Obtén las letras de las fichas del jugador
@@ -62,7 +73,38 @@ class Player:
     
         # Si se llega a este punto, significa que todas las letras necesarias están disponibles
         return True
+    
 
+
+
+    def exchange_tiles(self, bag, tiles_to_exchange):
+        if len(self.tiles) < tiles_to_exchange:
+            raise NoSuficienteFichasException(f"No quedan mas fichas para intercambiar ({len(self.tiles)} < {tiles_to_exchange})")
+
+
+         # Toma las fichas del jugador que se intercambiarán
+        exchanged_tiles = []
+        for _ in range(tiles_to_exchange):
+            tile = self.tiles.pop(0)
+            exchanged_tiles.append(tile)
+
+
+        # Agrega nuevas fichas al jugador desde la bolsa
+        new_tiles = bag.take(tiles_to_exchange)
+        self.tiles.extend(new_tiles)
+
+        return exchanged_tiles, new_tiles
+    
+
+
+
+    
+
+    
+
+
+
+    
 
 
 

@@ -1,7 +1,7 @@
 import unittest
-from game.player import Player
 from game.models import BagTiles
 from game.tile import Tile
+from game.player import Player,NoSuficienteFichasException
 
 
 
@@ -29,6 +29,12 @@ class TestPlayer(unittest.TestCase):
         player = Player()
         player.increase_score(5)
         self.assertEqual(player.get_score(), 5)
+    
+
+    def test_show_tiles(self):
+        player = Player()
+        self.assertEqual(player.show_tiles(), player.tiles)
+
 
     
     def test_refill(self):
@@ -88,6 +94,24 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(is_valid, False)
 
 
+    def test_exchange_tiles(self):
+        player = Player()
+        bag = BagTiles()
+        player.get_tiles(bag, 3)
+        tile = player.tiles[0]
+        exchanged_tiles, new_tiles = player.exchange_tiles(bag, 2)
+        
+        self.assertNotEqual(tile, player.tiles[0])  # Verificar que la ficha intercambiada no sea igual a la ficha original
+        self.assertEqual(len(player.tiles), 3)  # El jugador debería tener 3 fichas después del intercambio
+
+    def test_exchange_not_enough_tiles(self):
+        player = Player()
+        bag = BagTiles()
+        player.get_tiles(bag, 2)
+        with self.assertRaises(NoSuficienteFichasException):
+            exchanged_tiles, new_tiles = player.exchange_tiles(bag, 3)
+        self.assertEqual(len(player.tiles), 2)  # El jugador debería seguir teniendo 2 fichas
+    
 
 
 if __name__ == '__main__':

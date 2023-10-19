@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-19
+
+### Added
+- Add ,method and test exchege_tile in player
+- Add get tiles and show tiles
+
 ## [0.2.8] 2023-10-17
 
 ### Added
