@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-20
+
+### Fixed
+
+
+- Fix premium cells
+
 ## [0.2.8] 2023-10-19
 
 ### Added
