@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-21
+
+### Added
+
+
+- Add method play and validate word in scrabble
+
 ## [0.2.8] 2023-10-20
 
 ### Fixed
