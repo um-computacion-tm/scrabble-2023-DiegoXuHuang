@@ -2,12 +2,24 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-24
+
+### Fixed
+
+
+- Fixed validate word inside board 
+### Added
+
+
+- Add the validate word place board method and the tests, implement a couple of tests for each case
+
 ## [0.2.8] 2023-10-21
 
 ### Added
 
 
 - Add method play and validate word in scrabble
+- Add method removed tile
 
 ## [0.2.8] 2023-10-20
 
