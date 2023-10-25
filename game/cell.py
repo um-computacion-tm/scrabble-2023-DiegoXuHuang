@@ -17,27 +17,23 @@ class Cell:
     def get_tile(self):
         return self.letter
    
+    def toggle_cell(self):
+        self.active = not self.active
 
-    def activate_cell(self):
-        if self.active == False:
-            self.active = True
-    
-    def deactivate_cell(self):
-        if self.active == True:
-            self.active = False
-        
 
         
     # falta test de __rep__
-    def __repr__(self):
-        if self.letter:
-            return repr(self.letter)
-        if self.multiplier > 1:
-            return f'{"W" if self.multiplier_type == "word" else "L"}x{self.multiplier}'
-        else:
-            return '   '
-     
+    # def __repr__(self):
+    #     if self.letter:
+    #         return repr(self.letter)
+    #     if self.multiplier > 1:
+    #         return f'{"W" if self.multiplier_type == "word" else "L"}x{self.multiplier}'
+    #     else:
+    #         return '   '
         
+     
+    #cam
+
     def calculate_value(self):
         if self.letter is None:
             return 0
@@ -50,8 +46,6 @@ class Cell:
 
     def add_letter(self, letter:Tile):
         self.letter = letter
-
-
 
         
     # def show_player(player_index, player):

@@ -49,6 +49,31 @@ class TestCell(unittest.TestCase):
             3,
         )
 
+
+    def test_toggle_cell_active_to_inactive(self):
+        # Crea una celda activa
+        cell = Cell(multiplier=2, multiplier_type='X', letter=None, active=True)
+        # Asegura que la celda esté activa
+        self.assertTrue(cell.active)
+        # Cambia la celda a inactiva
+        cell.toggle_cell()
+        # Asegura que la celda esté inactiva
+        self.assertFalse(cell.active)
+
+    def test_toggle_cell_inactive_to_active(self):
+        # Crea una celda inactiva
+        cell = Cell(multiplier=2, multiplier_type='X', letter=None, active=False)
+        # Asegura que la celda esté inactiva
+        self.assertFalse(cell.active)
+        # Cambia la celda a activa
+        cell.toggle_cell()
+        # Asegura que la celda esté activa
+        self.assertTrue(cell.active)
+
+   
+
+
+
     
 
     
