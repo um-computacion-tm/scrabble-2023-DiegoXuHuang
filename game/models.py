@@ -2,6 +2,8 @@ import random
 from game.tile import Tile
 
 
+
+
 class BagTiles:
     def __init__(self):
         self.tiles = [
@@ -104,6 +106,9 @@ class BagTiles:
             Tile("X", 8),
             Tile("Z", 10),
         ]
+        random.shuffle(self.tiles)
+    
+    def shuffle_bag(self):
         random.shuffle(self.tiles)
 
     def take(self, count):

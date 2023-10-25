@@ -48,7 +48,13 @@ class TestCell(unittest.TestCase):
             cell.calculate_value(),
             3,
         )
+
     
+
+    
+
+
+   
     
 
 

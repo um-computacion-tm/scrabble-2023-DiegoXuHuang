@@ -17,10 +17,16 @@ class TestTile(unittest.TestCase):
         self.assertIsNone(tile.player)
 
     def test_custom_player(self):
-        player = "John"
+        player = "Facundo"
         tile = Tile("D", 2, player)
         self.assertEqual(tile.player, player)
 
+    def test_tile_repr(self):
+        tile = Tile('A', 1)
+        expected_repr = 'A:1'
+        self.assertEqual(repr(tile), expected_repr)
+
+    
+
 if __name__ == '__main__':
     unittest.main()
-
