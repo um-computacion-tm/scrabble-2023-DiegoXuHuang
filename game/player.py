@@ -18,12 +18,9 @@ class Player:
     
     def get_name(self):
         return self.name
-    
-
 
     def get_tiles(self, bag: BagTiles, amount):
         self.tiles += bag.take(amount)
-
 
     def show_tiles(self):
         return self.tiles
@@ -36,10 +33,8 @@ class Player:
     def increase_score(self,increase):
         self.score += increase
 
-
     def get_score(self):
         return self.score
-    
     
     def refill(self, bag: BagTiles):
         # Calcula la cantidad de fichas que se necesitan para llegar a un total de 7.
@@ -51,9 +46,6 @@ class Player:
         # Extiende la lista "self.tiles" con las nuevas fichas obtenidas.
         self.tiles.extend(new_tiles)
 
-
-
-    
     def has_letters(self, tiles=[]):
         # Obtén las letras de las fichas del jugador
         player_letters = [tile.letter for tile in self.tiles]
@@ -75,19 +67,12 @@ class Player:
         # Si se llega a este punto, significa que todas las letras necesarias están disponibles
         return True
     
-
-
-
     def exchange_tile(self, bag: BagTiles, tile_exchange):
         if tile_exchange in self.tiles:
             self.tiles.remove(tile_exchange)
             bag.put([tile_exchange])
             bag.shuffle_bag()
             self.tiles.append(bag.take(1)[0])
-
-                
-    
-
     
     def remove_tile(self, tile: Tile):
         for i in self.tiles:

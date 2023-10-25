@@ -1,6 +1,6 @@
 import unittest
-from game.scrabble import ScrabbleGame, Board
-from game.models import *
+from game.scrabble import ScrabbleGame
+from game.tile import Tile
 
 
 class TestScrabbleGame(unittest.TestCase):
@@ -12,6 +12,12 @@ class TestScrabbleGame(unittest.TestCase):
             3,
         )
         self.assertIsNotNone(scrabble_game.bag_tiles)
+
+    def test_playing(self):
+        game = ScrabbleGame(players_count=2)
+        self.assertTrue(game.playing())
+    
+ 
     
     def test_next_turn_when_game_is_starting(self):
         scrabble_game = ScrabbleGame(players_count=3)
@@ -41,6 +47,9 @@ class TestScrabbleGame(unittest.TestCase):
         scrabble_game = ScrabbleGame(players_count=4)
         scrabble_game.bag_tiles = []  
         self.assertTrue(scrabble_game.end_game())
+
+
+
 
  
 

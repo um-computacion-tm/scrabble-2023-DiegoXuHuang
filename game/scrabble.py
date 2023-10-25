@@ -2,6 +2,7 @@ from game.board import Board
 from game.player import Player
 from game.models import BagTiles
 from game.dictionary import * 
+from game.cell import *
 
 class DictionaryConnectionError(Exception):
     pass
@@ -22,6 +23,8 @@ class ScrabbleGame:
 
         self.current_player = None
         self.turn = 0
+        self.board.add_premium_cells()
+
 
     # falta test de playing
     def playing(self):
@@ -31,7 +34,7 @@ class ScrabbleGame:
     def play(self, word, location, orientation):
         self.validate_word(word, location, orientation)
         words = self.board.put_words(word, location, orientation)
-        total = calculate_words_value(words)
+        total = self.calculate_words_value(words)
         self.players[self.current_player].score += total
         self.next_turn()
 

@@ -48,8 +48,7 @@ class Board:
         elif orientation == 'V':
             return len(word) <= 15 - self.position_row
         else:
-            return False    
-
+            return False  
 
 
    
@@ -116,6 +115,7 @@ class Board:
 
         return True
     
+    
 
     def update_position(self, orientation):
         if orientation == "H":
@@ -140,7 +140,7 @@ class Board:
         elif valid:
             return self.validate_word_place_board_is_not_empty(orientation)
         return False
-
+    
     
 
 
@@ -154,6 +154,15 @@ class Board:
                 ' '.join([repr(cell) for cell in row])
             )
 
+
+   
+    
+
+
+    
+
+    
+  
 
 
 
