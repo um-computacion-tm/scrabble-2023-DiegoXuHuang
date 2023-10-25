@@ -1,13 +1,13 @@
 from game.tile import Tile
 
 class Cell:
-    def __init__(self, multiplier=1, multiplier_type='letter', letter=None, active=True, row=0, col=0):
+    def __init__(self, multiplier=1, multiplier_type='letter', letter=None, active=True):
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
         self.letter = letter
         self.active = active
-        self.row = row
-        self.col = col
+        # self.row = row
+        # self.col = col
 
     
     #test
