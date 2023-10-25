@@ -94,23 +94,45 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(is_valid, False)
 
 
-    def test_exchange_tiles(self):
-        player = Player()
-        bag = BagTiles()
-        player.get_tiles(bag, 3)
-        tile = player.tiles[0]
-        exchanged_tiles, new_tiles = player.exchange_tiles(bag, 2)
-        
-        self.assertNotEqual(tile, player.tiles[0])  # Verificar que la ficha intercambiada no sea igual a la ficha original
-        self.assertEqual(len(player.tiles), 3)  # El jugador debería tener 3 fichas después del intercambio
+    def test_player_exchange_first_tile(self):
 
-    def test_exchange_not_enough_tiles(self):
         player = Player()
         bag = BagTiles()
-        player.get_tiles(bag, 2)
-        with self.assertRaises(NoSuficienteFichasException):
-            exchanged_tiles, new_tiles = player.exchange_tiles(bag, 3)
-        self.assertEqual(len(player.tiles), 2)  # El jugador debería seguir teniendo 2 fichas
+        player.tiles.extend(bag.take(4))
+        original_tile = player.tiles[0]
+
+       
+        player.exchange_tile(bag, original_tile)
+
+        # Verificar que la ficha se haya intercambiado correctamente
+        self.assertNotEqual(original_tile, player.tiles[0])
+        
+        
+    def test_player_exchange_second_tile(self):
+        
+        player = Player()
+        bag = BagTiles()
+        player.tiles.extend(bag.take(3))
+        original_tile = player.tiles[1]
+        
+        # Intercambiar el segundo ficha y comprobar si es diferente
+        player.exchange_tile(bag, player.tiles[1])
+        exchanged_tile = player.tiles[1]
+        
+        # Afirmar que los ficha son diferentes
+        self.assertNotEqual(original_tile, exchanged_tile)
+
+
+    def test_remove_tile(self):
+        player = Player()
+        player.tiles = [
+            Tile(letter='C', value=4),
+            Tile(letter='A', value=1),
+            Tile(letter='S', value=1),
+            Tile(letter='A', value=1),
+        ]
+        player.remove_tile(Tile("A",1))
+        self.assertEqual(len(player.tiles),3)
     
 
 

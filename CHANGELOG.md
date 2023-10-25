@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-25
+
+### Fixed
+
+
+- Fixed method and test exchange tile in player
+
 ## [0.2.8] 2023-10-24
 
 ### Fixed

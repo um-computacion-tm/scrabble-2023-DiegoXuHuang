@@ -1,3 +1,4 @@
+
 from game.tile import Tile
 from game.models import BagTiles
 
@@ -77,23 +78,40 @@ class Player:
 
 
 
-    def exchange_tiles(self, bag, tiles_to_exchange):
-        if len(self.tiles) < tiles_to_exchange:
-            raise NoSuficienteFichasException(f"No quedan mas fichas para intercambiar ({len(self.tiles)} < {tiles_to_exchange})")
+    def exchange_tile(self, bag: BagTiles, tile_exchange):
+        if tile_exchange in self.tiles:
+            self.tiles.remove(tile_exchange)
+            bag.put([tile_exchange])
+            bag.shuffle_bag()
+            self.tiles.append(bag.take(1)[0])
+
+                
+    
+
+    
+    def remove_tile(self, tile: Tile):
+        for i in self.tiles:
+            if i.letter == tile.letter:
+                self.tiles.remove(i)
+                print(f"Tile {i.letter} eliminado.")
+                break
 
 
-         # Toma las fichas del jugador que se intercambiarán
-        exchanged_tiles = []
-        for _ in range(tiles_to_exchange):
-            tile = self.tiles.pop(0)
-            exchanged_tiles.append(tile)
 
 
-        # Agrega nuevas fichas al jugador desde la bolsa
-        new_tiles = bag.take(tiles_to_exchange)
-        self.tiles.extend(new_tiles)
 
-        return exchanged_tiles, new_tiles
+
+
+
+
+
+
+
+                    
+    
+    
+    
+    
     
 
 
