@@ -4,6 +4,7 @@ from game.models import BagTiles
 from game.dictionary import * 
 from game.cell import *
 
+
 class DictionaryConnectionError(Exception):
     pass
 class InvalidWordException(Exception):
@@ -17,14 +18,16 @@ class ScrabbleGame:
     def __init__(self, players_count):
         self.board = Board()
         self.bag_tiles = BagTiles()
-        self.players = []
-        for _ in range(players_count):
-            self.players.append(Player())
-
+        self.players = [Player() for _ in range(players_count)]
         self.current_player = None
         self.turn = 0
         self.board.add_premium_cells()
-     
+        self.dictionary = Dictionary('dictionaries/diccionario.txt')
+
+    
+
+        
+
 
     # falta test de playing
     def playing(self):
@@ -46,29 +49,54 @@ class ScrabbleGame:
         else:
             index = (self.players.index(self.current_player) + 1) % len(self.players)
             self.current_player = self.players[index]
+
+    #refill lo tengo en el archivo Player,
+
 # 
     #falta definir
 
+
+
+    
+    def validate_word(self, word, location, orientation):
+        # Comprueba si la palabra puede colocarse en el tablero
+        if not self.board.validate_word_place_board(word, location, orientation):
+            return False
+    
+        # Comprueba si la palabra está en el diccionario
+        if not self.dictionary.has_word(word):
+            return False
+    
+        # me falta validar si el jugador tiene las fichas necesarias para format la palabra/jugar
+        # # Comprueba si el jugador tiene las letras necesarias para formar la palabra
+        # if not self.current_player.has_letters(self.board.mletter):
+        #     return False
+
+        # return True
+
+
     # def validate_word(self, word, location, orientation):
     #     if not dict_validate_word(word):
-    #         raise InvalidWordException("Su palabra no existe en el diccionario")s
+    #         raise InvalidWordException("Su palabra no existe en el diccionario")
     #     if not self.board.validate_word_inside_board(word, location, orientation):
     #         raise InvalidPlaceWordException("Su palabra excede el tablero")
     #     if not self.board.validate_word_place_board(word, location, orientation):
     #         raise InvalidPlaceWordException("Su palabra esta mal puesta en el tablero")
-
     
 
+  
     def is_board_full(self):
         cell_has_letter = [cell.letter is not None for row in self.board.grid for cell in row]
         return all(cell_has_letter)
     
 
-    def end_game(self):
-        if len(self.bag_tiles) == 0:
-            return True
-        return False
-    
+
+
+
+    # def end_game(self):
+    #     if len(self.bag_tiles) == 0:
+    #         return True
+    #     return False
 
 
 
@@ -106,3 +134,9 @@ class ScrabbleGame:
 
 
 
+ 
+  
+  
+    
+
+    

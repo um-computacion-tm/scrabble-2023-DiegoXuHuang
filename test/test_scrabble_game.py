@@ -44,8 +44,65 @@ class TestScrabbleGame(unittest.TestCase):
 
         assert scrabble_game.current_player == scrabble_game.players[0]
 
+#------------------------------
+
+    def test_validate_word_NOT_EXITS_in_dictionary(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.current_player = scrabble_game.players[0]
+
+        # Establece una palabra que no está en el diccionario
+        word = "xyz"
+        orientation = "H"
+        location = (7, 7)
+
+        # Llama a la función para validar la palabra
+        word_validate = scrabble_game.validate_word(word, location, orientation)
+
+        # Asegura que la palabra no esté en el diccionario
+        assert word_validate is False
 
 
+    def test_validate_word_invalid_placement(self):
+        # check de si la palabra esta fuera del tablero
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.bag_tiles.tiles = [
+            Tile(letter='A', value=3),
+            Tile(letter='N', value=1),
+            Tile(letter='T', value=1),
+            Tile(letter='I', value=3),
+            Tile(letter='C', value=1),
+            Tile(letter='O', value=1),
+            Tile(letter='N', value=3),
+            Tile(letter='S', value=1),
+            Tile(letter='T', value=1),
+            Tile(letter='I', value=3),
+            Tile(letter='T', value=1),
+            Tile(letter='U', value=1),
+            Tile(letter='C', value=1),
+            Tile(letter='I', value=1),
+            Tile(letter='O', value=1),
+            Tile(letter='N', value=1),
+            Tile(letter='A', value=1),
+            Tile(letter='L', value=1),
+            Tile(letter='I', value=1),
+            Tile(letter='D', value=1),
+            Tile(letter='A', value=1),
+            Tile(letter='D', value=1),
+        ]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(22))
+        word = "anticonstitucionalidad"
+        orientation = "V"
+        location = (7,7)
+        word_validate = scrabble_game.validate_word(word, location, orientation)
+        assert word_validate == False
+        
+
+
+
+
+
+#-------------------------------
     def test_full_board(self):
         scrabble_game = ScrabbleGame(players_count=2)
 
@@ -58,10 +115,10 @@ class TestScrabbleGame(unittest.TestCase):
 
 
 
-    def test_end_game(self):
-        scrabble_game = ScrabbleGame(players_count=4)
-        scrabble_game.bag_tiles = []  
-        self.assertTrue(scrabble_game.end_game())
+    # def test_end_game(self):
+    #     scrabble_game = ScrabbleGame(players_count=4)
+    #     scrabble_game.bag_tiles = []  
+    #     self.assertTrue(scrabble_game.end_game())
 
 
 

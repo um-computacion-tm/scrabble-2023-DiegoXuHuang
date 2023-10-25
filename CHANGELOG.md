@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file
 
 
 - Fixed method and test exchange tile in player
+- Fixing validate word
 
 ## [0.2.8] 2023-10-24
 
