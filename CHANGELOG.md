@@ -8,11 +8,13 @@ All notable changes to this project will be documented in this file
 
 
 - Add more test for validate word
+- Add Comodin
 
 ### Fixed
 
 
 - Fixed method validate word
+- Fixed test models
 
 ### Changed
 
