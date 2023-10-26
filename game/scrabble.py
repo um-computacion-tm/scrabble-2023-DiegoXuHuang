@@ -5,6 +5,7 @@ from game.dictionary import *
 from game.cell import *
 
 
+
 class DictionaryConnectionError(Exception):
     pass
 class InvalidWordException(Exception):
@@ -24,9 +25,6 @@ class ScrabbleGame:
         self.board.add_premium_cells()
         self.dictionary = Dictionary('dictionaries/diccionario.txt')
 
-    
-
-        
 
 
     # falta test de playing
@@ -52,8 +50,6 @@ class ScrabbleGame:
 
     #refill lo tengo en el archivo Player,
 
-# 
-    #falta definir
 
 
 
@@ -67,64 +63,28 @@ class ScrabbleGame:
         if not self.dictionary.has_word(word):
             return False
     
-        # me falta validar si el jugador tiene las fichas necesarias para format la palabra/jugar
-        # # Comprueba si el jugador tiene las letras necesarias para formar la palabra
-        # if not self.current_player.has_letters(self.board.mletter):
-        #     return False
+        # Comprueba si el jugador tiene las letras necesarias para formar la palabra
+        if not self.current_player.has_letters(self.board.mletter):
+            return False
 
-        # return True
+        return True
 
 
-    # def validate_word(self, word, location, orientation):
-    #     if not dict_validate_word(word):
-    #         raise InvalidWordException("Su palabra no existe en el diccionario")
-    #     if not self.board.validate_word_inside_board(word, location, orientation):
-    #         raise InvalidPlaceWordException("Su palabra excede el tablero")
-    #     if not self.board.validate_word_place_board(word, location, orientation):
-    #         raise InvalidPlaceWordException("Su palabra esta mal puesta en el tablero")
-    
-
-  
     def is_board_full(self):
         cell_has_letter = [cell.letter is not None for row in self.board.grid for cell in row]
         return all(cell_has_letter)
-    
 
 
-
-
-    # def end_game(self):
-    #     if len(self.bag_tiles) == 0:
-    #         return True
-    #     return False
-
-
-
-   
-    
-
-
-
-
-
-
-    # def validate_word(self, word, location, orientation):
-    #     
-        #   '''
-        #   1- Validar que usuario tiene esas letras
-        #   2- Validar que la palabra entra en el tablero
-        #   '''
-    #     self.board.validate_word_inside_board(word, location, orientation)
-    
-
-    #---------------------------
+    # #---------------------------
     # def get_words():
+    #     pass
     #     '''
     #     Obtener las posibles palabras que se pueden formar, dada una palabra, ubicacion y orientacion 
     #     Preguntar al usuario, por cada una de esas palabras, las que considera reales
     #     '''
     
     # def put_words():
+    #     pass
     #     '''
     #     Modifica el estado del tablero con las palabras consideradas como correctas
     #     '''
