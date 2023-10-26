@@ -1,5 +1,5 @@
 from game.cell import Cell
-from game.models import Tile
+
 
 TRIPLE_WORD_SCORE = ((0, 0), (7, 0), (14, 0), (0, 7), (14, 7), (0, 14), (7, 14), (14, 14))
 DOUBLE_WORD_SCORE = ((1, 1), (2, 2), (3, 3), (4, 4), (1, 13), (2, 12), (3, 11), (4, 10), (13, 1), (12, 2),
@@ -27,13 +27,13 @@ class Board:
 
     def add_premium_cells(self):
         for coordinate in TRIPLE_WORD_SCORE:
-            self.set_cell_multiplier(coordinate, "word", 3)
+            self.set_cell_multiplier(coordinate, "W", 3)
         for coordinate in DOUBLE_WORD_SCORE:
-            self.set_cell_multiplier(coordinate, "word", 2)
+            self.set_cell_multiplier(coordinate, "W", 2)
         for coordinate in TRIPLE_LETTER_SCORE:
-            self.set_cell_multiplier(coordinate, "letter", 3)
+            self.set_cell_multiplier(coordinate, "L", 3)
         for coordinate in DOUBLE_LETTER_SCORE:
-            self.set_cell_multiplier(coordinate, "letter", 2)
+            self.set_cell_multiplier(coordinate, "L", 2)
 
 
 
@@ -124,9 +124,9 @@ class Board:
             self.position_row += 1
 
         return self.position_row, self.position_col
+    
 
-
-
+    
     def validate_word_place_board(self, word, location, orientation):
         #este método se utiliza para validar si una palabra dada se puede colocar en el tablero en una ubicación y orientación específicas, 
         #teniendo en cuenta si el tablero está vacío o si ya contiene letras en algunas celdas
@@ -143,25 +143,23 @@ class Board:
     
     
 
+    def show_board(self):
+        #no hice el test, directamente lo fui imprimiendo para ver como quedaba
+        board_str = "   |  " + "  |  ".join(str(item) for item in range(10)) + "  | " + "  | ".join(str(item) for item in range(10, 15)) + " |"
+        board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n"
+        board = list(self.grid)
+        for i in range(len(board)):
+            if i < 10:
+                board[i] = str(i) + "  | " + " | ".join(str(item) for item in board[i]) + " |"
+            if i >= 10:
+                board[i] = str(i) + " | " + " | ".join(str(item) for item in board[i]) + " |"
+        board_str += "\n   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|\n".join(board)
+        board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
+        print(board_str)
 
-    def show_board(board):
-    #toma un tablero y muestra una representación legible de ese tablero en la consola
-        print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(15)]))
-        for row_index, row in enumerate(board.grid):
-            print(
-                str(row_index).rjust(2) +
-                '| ' +
-                ' '.join([repr(cell) for cell in row])
-            )
+ 
 
 
-   
-    
-
-
-    
-
-    
   
 
 

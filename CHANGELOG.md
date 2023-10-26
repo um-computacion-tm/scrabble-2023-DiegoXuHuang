@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file
 
 - Add more test for validate word
 - Add Comodin
+- Add test __rep__ cell
 
 ### Fixed
 
@@ -20,6 +21,8 @@ All notable changes to this project will be documented in this file
 
 
 - implement has letter
+- Changed __rep__ cell
+- Changed show board
 
 ## [0.2.8] 2023-10-25
 
