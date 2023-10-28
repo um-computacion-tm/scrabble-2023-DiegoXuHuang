@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file
 
+TENER EN CUENTA: (DESPS SE BORRA)
+- cuando se cambia tile, max 7, sino Exception
+- comodin no poner mas de 1 letra, exception si tengo rr 
+
+## [0.2.8] 2023-10-28
+
+### Added
+
+
+- add new util.py
+- add method get word for different directions and test
+
 ## [0.2.8] 2023-10-27
 
 ### Changed
