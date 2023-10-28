@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-10-27
+
+### Changed
+
+
+- changed show board 
+- Moved calculate word value to util.py
+
+### Fixed
+
+- fixed premius cell values
+- fixed method validate word place board
+
 ## [0.2.8] 2023-10-26
 
 ### Added
