@@ -14,10 +14,12 @@ class Board:
         self.add_premium_cells()
         self.is_empty = None
 
+
     def set_cell_multiplier(self, coordinate, multiplier_type, multiplier_value):
         cell = self.grid[coordinate[0]][coordinate[1]]
         cell.multiplier_type = multiplier_type
         cell.multiplier = multiplier_value
+
 
     def add_premium_cells(self):
         for coordinate in TRIPLE_WORD_SCORE:
@@ -28,6 +30,7 @@ class Board:
             self.set_cell_multiplier(coordinate, "L", 3)
         for coordinate in DOUBLE_LETTER_SCORE:
             self.set_cell_multiplier(coordinate, "L", 2)
+
 
     def validate_word_inside_board(self, word, location, orientation):
         word = [letter.upper() for letter in word] if isinstance(word, list) else word.upper()
@@ -42,28 +45,6 @@ class Board:
         else:
             return False  
 
-    # pasarlo al archivo util desps
-    # def calculate_word_value(self, word):
-    # #calcular valor de la palabra
-    #     total_value = 0
-    #     word_multiplier = 1
-
-    #     for cell in word:
-    #         tile = cell.letter
-    #         tile_value = tile.value
-
-    #         if cell.active:
-    #             if cell.multiplier_type == 'letter':
-    #                 tile_value *= cell.multiplier
-    #             elif cell.multiplier_type == 'word':
-    #                 word_multiplier *= cell.multiplier
-
-    #         total_value += tile_value
-
-    #     return total_value * word_multiplier
-
-
-
     def update_position(self, orientation):
         if orientation == "H":
             self.position_col += 1
@@ -72,7 +53,6 @@ class Board:
 
         return self.position_row, self.position_col
     
-
 
     def empty(self):
         # Verifica si el tablero está vacío
@@ -95,7 +75,6 @@ class Board:
         return False
     
 
-
     def validate_word_place_board_is_not_empty(self, orientation):
         def update_letters_container(letters, letter):
             if isinstance(letters, list):
@@ -117,7 +96,7 @@ class Board:
         return True
     
     
-
+    '''ca'''
     
     def validate_word_place_board(self, word, location, orientation):
         #este método se utiliza para validar si una palabra dada se puede colocar en el tablero en una ubicación y orientación específicas, 
@@ -139,9 +118,9 @@ class Board:
             return self.validate_word_place_board_is_not_empty(orientation)
         
 
+    
 
     def show_board(self):
-
         board_str = "   |  " + "  |  ".join(str(item) for item in range(10)) + "  | " + "  | ".join(str(item) for item in range(10, 15)) + " |"
         board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n"
         board = list(self.grid)
@@ -154,78 +133,12 @@ class Board:
         board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
         print(board_str)
     
-    
-    
- 
-    
 
 
-  
 
-        
 
-    
-
-    
-    
-
-    
-        
-
-   
 
 
         
+        
 
-
-    
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-    
-
-
-
-    
-
-
-
-
-
-
-    
-   
-    
-
-
-
-   
-
-
-
-    
-
-
-  
-
-
- 
-
-
-
-    
-
-
- 
