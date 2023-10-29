@@ -6,6 +6,19 @@ TENER EN CUENTA: (DESPS SE BORRA)
 - cuando se cambia tile, max 7, sino Exception
 - comodin no poner mas de 1 letra, exception si tengo rr 
 
+## [0.2.8] 2023-10-29
+
+### Fixed
+
+
+- Fixed calculate value and calculate word
+
+### Added
+
+
+- Add removed accents and test
+
+
 ## [0.2.8] 2023-10-28
 
 ### Added

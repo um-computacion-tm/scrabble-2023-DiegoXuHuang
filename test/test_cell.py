@@ -2,10 +2,11 @@ import unittest
 from game.cell import Cell
 from game.models import Tile
 from game.tile import Tile
+from game.cell import Cell, Tile
+
 
 
 class TestCell(unittest.TestCase):
-    
     
     def test_init(self):
         cell = Cell(multiplier=2, multiplier_type='letter')
@@ -24,9 +25,6 @@ class TestCell(unittest.TestCase):
             0,
         )
 
-    
-
-
     def test_add_letter(self):
         cell = Cell(multiplier=1, multiplier_type='')
         letter = Tile(letter='p', value=3)
@@ -35,50 +33,65 @@ class TestCell(unittest.TestCase):
 
         self.assertEqual(cell.letter, letter)
 
-    def test_cell_value(self):
-        cell = Cell(multiplier=2, multiplier_type='letter')
-        letter = Tile(letter='p', value=3)
+    def test_calculate_value(self):
+        cell = Cell(multiplier=2, multiplier_type='L', letter=None, active=True)
+        letter = Tile(letter='a', value=1)
         cell.add_letter(letter=letter)
 
-        self.assertEqual(
-            cell.calculate_value(),
-            6,
-        )
+        expected_value = 2
+        actual_value = cell.calculate_value()
 
-    def test_cell_multiplier_word(self):
+        self.assertEqual(actual_value, expected_value)
+
+    def test_multiplier_word(self):
         cell = Cell(multiplier=2, multiplier_type='word')
-        letter = Tile(letter='p', value=3)
+        letter = Tile(letter='a', value=1)
         cell.add_letter(letter=letter)
 
-        self.assertEqual(
-            cell.calculate_value(),
-            3,
-        )
+        expected_value = 1
+        actual_value = cell.calculate_value()
+
+        self.assertEqual(actual_value, expected_value)
+
+  
+    def test_has_letter(self):
+        cell = Cell(multiplier=1, multiplier_type='', letter=None, active=True)
+        cell.add_letter(Tile(letter='a', value=1))
+        self.assertTrue(cell.has_tile())
 
 
-    # def test_toggle_cell_active_to_inactive(self):
-    #     cell = Cell(multiplier=2, multiplier_type='X', letter=None, active=True)
-    #     self.assertTrue(cell.active)
-    #     cell.toggle_cell()
-    #     self.assertFalse(cell.active)
+    def test_get_tile(self):
+        initial_letter = Tile(letter='p', value=3)
+        cell = Cell(multiplier=1, multiplier_type='', letter=initial_letter, active=True)
+        
+        retrieved_letter = cell.get_tile()
+
+        self.assertEqual(retrieved_letter.letter, initial_letter.letter)
+        self.assertEqual(retrieved_letter.value, initial_letter.value)
+
+
+    def test_deactivate_cell(self):
+        cell = Cell(multiplier=2, multiplier_type='W', letter=None, active=True)
+        cell.deactivate_cell()
+        self.assertEqual(cell.active,False)
 
 
 
-    # def test_toggle_cell_inactive_to_active(self):
-    #     cell = Cell(multiplier=2, multiplier_type='X', letter=None, active=False)
-    #     self.assertFalse(cell.active)
-    #     cell.toggle_cell()
-    #     self.assertTrue(cell.active)
+    # def test_repr_without_letter(self):
+    #     instance = Cell(letter=None, multiplier=2, multiplier_type='D')
+    #     self.assertEqual(repr(instance), 'Dx2')
+
+    # def test_repr_without_letter_and_multiplier_one(self):
+    #     instance = Cell(letter=None, multiplier=1)
+    #     self.assertEqual(repr(instance), '   ')
 
 
 
-    def test_repr_without_letter(self):
-        instance = Cell(letter=None, multiplier=2, multiplier_type='D')
-        self.assertEqual(repr(instance), 'Dx2')
 
-    def test_repr_without_letter_and_multiplier_one(self):
-        instance = Cell(letter=None, multiplier=1)
-        self.assertEqual(repr(instance), '   ')
+  
+
+if __name__ == "__main__":
+    unittest.main()
 
 
 

@@ -1,3 +1,5 @@
+from unidecode import unidecode
+
 class Dictionary:
     def __init__(self, file_path):
         self.words = self.load_words(file_path)
@@ -14,4 +16,19 @@ class Dictionary:
             word = word.lower()
         
         return word in self.words
+    
+    ''' CAMBIARLO A OTRA FORMA'''
+
+    
+    def remove_accents(self, word):
+        word = word.lower()
+        cleaned_word = unidecode(word)
+        return cleaned_word
+
+    # def is_valid_scrabble_word(self, word):
+    #     word = word.lower()  
+    #     return word in self.words
+    
+
+
 

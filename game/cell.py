@@ -1,51 +1,63 @@
 from game.tile import Tile
 from game.models import Tile
+from functools import reduce
+
+
+class CalculateWordValue:
+    def calculate_word(self, word):
+        word_score = sum(cell.calculate_value() for cell in word)
+        product = reduce(lambda x, cell: x * cell.multiplier if cell.multiplier_type == 'W' and cell.active else x, word, 1)
+        return word_score * product
+
+
+
 class Cell:
     def __init__(self, multiplier=1, multiplier_type='letter', letter=None, active=True):
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
         self.letter = letter
         self.active = active
-        # self.row = row
-        # self.col = col
 
     
-    #test
+    def add_letter(self, letter:Tile):
+        self.letter = letter
+   
     def has_tile(self):
         return self.letter is not None
-    #test
+ 
     def get_tile(self):
         return self.letter
-   
-    # def toggle_cell(self):
-    #     self.active = not self.active
+    
 
-    # se 
-    def __repr__(self):
-        if self.letter is not None:
-            return f" {self.letter.letter} "
-        else:
-            if self.multiplier == 1:
-                return "   "
-            else:
-                return f"{self.multiplier_type}x{self.multiplier}"
-        
+    def deactivate_cell(self):
+        self.active = False
+
      
     def calculate_value(self):
         if self.letter is None:
             return 0
-        if self.multiplier_type == 'letter':
-            return self.letter.value * self.multiplier
-        else:
-            return self.letter.value
-        
-    
-    def add_letter(self, letter:Tile):
-        self.letter = letter
+        return self.letter.value * self.multiplier if self.multiplier_type == 'L' and self.active else self.letter.value
 
-        
-    # def show_player(player_index, player):
-    #     print(f"player #{player_index}: {player.tile}")
+
+
+
+
+
+
+
+  
+    
+   
+    
+
+
+
+
+ 
+
+
+
+    
 
 
     
