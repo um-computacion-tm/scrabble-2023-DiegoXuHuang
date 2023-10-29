@@ -8,6 +8,11 @@ TENER EN CUENTA: (DESPS SE BORRA)
 
 ## [0.2.8] 2023-10-29
 
+### Changed
+
+
+- simplify the batgtil
+
 ### Fixed
 
 
@@ -17,6 +22,7 @@ TENER EN CUENTA: (DESPS SE BORRA)
 
 
 - Add removed accents and test
+- Add test show board
 
 
 ## [0.2.8] 2023-10-28

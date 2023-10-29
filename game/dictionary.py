@@ -25,9 +25,9 @@ class Dictionary:
         cleaned_word = unidecode(word)
         return cleaned_word
 
-    # def is_valid_scrabble_word(self, word):
-    #     word = word.lower()  
-    #     return word in self.words
+    def is_valid_scrabble_word(self, word):
+        word = word.lower()  
+        return word in self.words
     
 
 
