@@ -17,10 +17,6 @@ class Dictionary:
         
         return word in self.words
     
-    ''' CAMBIARLO A OTRA FORMA'''
-    ''' NO FUNCIONA CON UNIDECODE '''
-    ''' EN ENV SI FUNCIONA'''
-
     
     def remove_accents(self, word):
         word = word.lower()
