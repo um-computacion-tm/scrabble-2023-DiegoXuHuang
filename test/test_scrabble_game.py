@@ -1,7 +1,6 @@
 import unittest
-from game.scrabble import ScrabbleGame
+from game.scrabble import ScrabbleGame, GameOverException
 from game.tile import Tile
-
 
 
 
@@ -18,8 +17,16 @@ class TestScrabbleGame(unittest.TestCase):
     def test_playing(self):
         game = ScrabbleGame(players_count=2)
         self.assertTrue(game.playing())
-    
- 
+
+    def test_clean_word_to_use(self):
+        game = ScrabbleGame(2)
+        word = 'Imaginación'
+        self.assertEqual(game.clean_word_to_use(word), 'IMAGINACION')
+
+    def test_show_amount_tiles_bag(self):
+        game = ScrabbleGame(2)
+        self.assertEqual(game.show_amount_tiles_bag(), 100)
+
     
     def test_next_turn_when_game_is_starting(self):
         scrabble_game = ScrabbleGame(players_count=3)
@@ -144,18 +151,121 @@ class TestScrabbleGame(unittest.TestCase):
 
 
 
+        
 
-   
+    def test_end_game_raises_exception(self):
+        
+        game = ScrabbleGame(players_count=2) # con 2 jugadores
+        game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
+        game.current_player = game.players[0]
+
+        
+        with self.assertRaises(GameOverException):
+            game.end_game()
+
+    def test_end_game_raises_exception(self):
+        
+        game = ScrabbleGame(players_count=3) # con 3 jugadores
+        game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
+        game.current_player = game.players[0]
+
+        
+        with self.assertRaises(GameOverException):
+            game.end_game()
 
 
-   
+    def test_end_game_raises_exception(self):
+        
+        game = ScrabbleGame(players_count=4) # con 4 jugadores
+        game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
+        game.current_player = game.players[0]
+
+        
+        with self.assertRaises(GameOverException):
+            game.end_game()
+
+
+    def test_end_game_when_board_is_full(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+    
+        # Llenar el tablero con letras
+        for row in scrabble_game.board.grid:
+            for cell in row:
+                cell.letter = Tile("T", 1)
+    
+        with self.assertRaises(GameOverException):
+            scrabble_game.end_game()
+
+
+    def test_end_game_false(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.bag_tiles.tiles = ['A']
+        game_finish = scrabble_game.end_game()
+        self.assertFalse(game_finish, False) 
+
+
+    def test_score_board_2(self):
+        scrabble_game = ScrabbleGame(2)
+        scrabble_game.players[0].name = "Diego"
+        scrabble_game.players[0].score = 30
+        scrabble_game.players[1].name = "Facundo"
+        scrabble_game.players[1].score = 8
+
+        scoreboard = scrabble_game.end_score()
+
+        self.assertEqual(scoreboard, [("Diego", 30), ("Facundo", 8)])
+
+
+    def test_score_board_3(self):
+        scrabble_game = ScrabbleGame(3)
+        scrabble_game.players[0].name = "Diego"
+        scrabble_game.players[0].score = 30
+        scrabble_game.players[1].name = "Facundo"
+        scrabble_game.players[1].score = 8
+        scrabble_game.players[2].name = "Florencia"
+        scrabble_game.players[2].score = 6
+
+        scoreboard = scrabble_game.end_score()
+
+        self.assertEqual(scoreboard, [("Diego", 30), ("Facundo", 8), ("Florencia", 6)])
+
+
+    def test_has_wildcard(self):
+        scrabble_game = ScrabbleGame(2)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.current_player.tiles = [Tile(" ", 0)]
+        self.assertTrue(scrabble_game.has_wildcard())
 
 
 
 
- 
+
+
+    '''----------------DDD-------------------- '''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
+
+
 
         
 
