@@ -13,6 +13,13 @@ TENER EN CUENTA: (DESPS SE BORRA)
 
 - add methos for ending game, willcard,get/update word score and cell
 - add tests for those methods
+- add rep in cell and test
+
+### Fixed
+
+
+- fixed refill in player and test
+- Deleted validate place board, pending to solve
 
 ## [0.2.8] 2023-10-29
 
