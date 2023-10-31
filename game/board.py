@@ -8,6 +8,9 @@ DOUBLE_LETTER_SCORE = ((0,3),(0,11),(2,6),(2,8),(3,0),(3,7),(3,14),(6,2),(6,6),(
 class NoCenterLetterException(Exception):
     pass
 
+class WordPlacementException(Exception):
+        pass
+
 class Board:
     def __init__(self):
         self.grid = [ [ Cell(1, '') for _ in range(15) ] for _ in range(15) ]
@@ -45,6 +48,7 @@ class Board:
         else:
             return False  
 
+
     def update_position(self, orientation):
         if orientation == "H":
             self.position_col += 1
@@ -58,68 +62,7 @@ class Board:
         # Verifica si el tablero está vacío
         self.is_empty = self.grid[7][7].letter is None
 
-
-    def validate_word_place_board_is_empty(self, orientation):
-        if (self.position_row, self.position_col) == (7, 7):
-            return True
     
-        # Definir el desplazamiento en función de la orientación
-        row_offset, col_offset = (0, 1) if orientation == "H" else (1, 0)
-
-        for i in self.word:
-            self.position_row += row_offset
-            self.position_col += col_offset
-            if (self.position_row, self.position_col) == (7, 7):
-                return True
-
-        return False
-    
-
-    def validate_word_place_board_is_not_empty(self, orientation):
-        def update_letters_container(letters, letter):
-            if isinstance(letters, list):
-                return [l for l in letters if l != letter]
-            else:
-                return "".join([l for l in letters if l != letter])
-
-        for i in self.word:
-            cell = self.grid[self.position_row][self.position_col]
-
-            if cell.letter is not None:
-                if i != cell.letter.letter:
-                    return False
-
-                self.mletter = update_letters_container(self.mletter, i)
-
-            self.position_row, self.position_col = self.update_position(orientation)
-
-        return True
-    
-    
-    '''ca'''
-    
-    def validate_word_place_board(self, word, location, orientation):
-        #este método se utiliza para validar si una palabra dada se puede colocar en el tablero en una ubicación y orientación específicas, 
-        #teniendo en cuenta si el tablero está vacío o si ya contiene letras en algunas celdas
-        
-        if type(word) is list:
-            word = ''.join(word).upper()
-        else:
-            word = str(word).upper()
-
-        if not self.validate_word_inside_board(word, location, orientation):
-            return False
-        self.empty()
-        self.mletter = word
-
-        if self.is_empty:
-            return self.validate_word_place_board_is_empty(orientation)
-        else:
-            return self.validate_word_place_board_is_not_empty(orientation)
-        
-
-    
-
     def show_board(self):
         board_str = "   |  " + "  |  ".join(str(item) for item in range(10)) + "  | " + "  | ".join(str(item) for item in range(10, 15)) + " |"
         board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n"
@@ -132,8 +75,10 @@ class Board:
         board_str += "\n   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|\n".join(board)
         board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
         print(board_str)
-    
 
+
+
+    
 
 
 

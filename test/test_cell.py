@@ -3,6 +3,7 @@ from game.cell import Cell
 from game.models import Tile
 from game.tile import Tile
 from game.cell import Cell, Tile
+from parameterized import parameterized
 
 
 
@@ -84,6 +85,17 @@ class TestCell(unittest.TestCase):
     # def test_repr_without_letter_and_multiplier_one(self):
     #     instance = Cell(letter=None, multiplier=1)
     #     self.assertEqual(repr(instance), '   ')
+
+
+    @parameterized.expand([
+        ("Single Letter", Cell(1, None, Tile("X", 1), True), " X "),
+        ("Two Letters", Cell(1, None, Tile("CH", 1), True), "CH "),
+        ("No Letter", Cell(1, None, None, True), "   "),
+        ("Multiplier", Cell(2, "L", None, True), "Lx2"),
+    ])
+    def test_repr(self, name, cell, expected):
+        self.assertEqual(repr(cell), expected)
+
 
 
 
