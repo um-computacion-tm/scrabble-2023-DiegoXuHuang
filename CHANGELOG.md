@@ -6,6 +6,14 @@ TENER EN CUENTA: (DESPS SE BORRA)
 - cuando se cambia tile, max 7, sino Exception
 - comodin no poner mas de 1 letra, exception si tengo rr 
 
+## [0.2.8] 2023-10-31
+
+
+### Added
+
+
+- add method calculator
+
 ## [0.2.8] 2023-10-30
 
 ### Added

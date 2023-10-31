@@ -137,14 +137,22 @@ class ScrabbleGame:
         self.previus = self.current_player.score - word_value
 
 
-    
 
 
+    def calculator(self, word, location, orientation):
+        validity_check = self.validate_word(word, location, orientation)
+        
+        if not validity_check:
+            return  
 
+        word_cell = self.get_word_cells(word, location, orientation)
+        
+        word_value = self.get_word_score(word_cell)
 
+        self.update_player_score(word_value)
 
-
-
+        [cell.deactivate_cell() for cell in word_cell]
+   
 
 
 
