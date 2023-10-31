@@ -1,4 +1,5 @@
 from game.cell import Cell
+from game.util import Util
 
 TRIPLE_WORD_SCORE = ((0,0),(7,0),(14,0),(0,7),(14,7),(0,14),(7,14),(14,14))
 DOUBLE_WORD_SCORE = ((1,1),(2,2),(3,3),(4,4),(10,10),(11,11),(12,12),(13,13),(1,13),(2,12),(3,11),(4,10),(7,7),(13,1),(12,2),(11,3),(10,4))
@@ -16,6 +17,7 @@ class Board:
         self.grid = [ [ Cell(1, '') for _ in range(15) ] for _ in range(15) ]
         self.add_premium_cells()
         self.is_empty = None
+        self.util = Util()
 
 
     def set_cell_multiplier(self, coordinate, multiplier_type, multiplier_value):
@@ -61,6 +63,53 @@ class Board:
     def empty(self):
         # Verifica si el tablero está vacío
         self.is_empty = self.grid[7][7].letter is None
+
+
+
+    def validate_word_center(self, orientation):
+        if (self.position_row, self.position_col) == (7, 7):
+            return True
+    
+        row_offset, col_offset = (0, 1) if orientation == "H" else (1, 0)
+
+        for i in self.word:
+            self.position_row += row_offset
+            self.position_col += col_offset
+            if (self.position_row, self.position_col) == (7, 7):
+                return True
+
+        return False
+    
+
+
+    def validate_word_placement_in_occupied_grid(self, orientation):
+        for i in self.word:
+            cell = self.grid[self.position_row][self.position_col]
+
+            if cell.letter is not None and i != cell.letter.letter:
+                return False
+
+            if self.util.is_word_letters(self.mletter):
+                self.mletter = [l for l in self.mletter if l != i]
+            else:
+                self.mletter = "".join([l for l in self.mletter if l != i])
+
+            self.position_row, self.position_col = self.update_position(orientation)
+
+        return True
+    
+
+
+    def validate_word_place_board(self, word, location, orientation):
+        
+        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+        valid = self.validate_word_inside_board(word, location, orientation)
+        self.empty()
+        self.mletter = word
+
+        if valid:
+            return self.validate_word_center(orientation) if self.is_empty else self.validate_word_placement_in_occupied_grid(orientation)
+        return False
 
     
     def show_board(self):
