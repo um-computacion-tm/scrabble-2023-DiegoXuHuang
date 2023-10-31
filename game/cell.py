@@ -22,7 +22,7 @@ class Cell:
 
     def __repr__(self):
         if self.letter is not None:
-            return self.format_special_letter(self)
+            return self.format_special_letter()
         else:
             if self.multiplier == 1:
                 return "   "
