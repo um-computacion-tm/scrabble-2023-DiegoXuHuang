@@ -14,6 +14,7 @@ TENER EN CUENTA: (DESPS SE BORRA)
 - add methos for ending game, willcard,get/update word score and cell
 - add tests for those methods
 - add rep in cell and test
+- add method word_list,letter, update coordinates in util
 
 ### Fixed
 

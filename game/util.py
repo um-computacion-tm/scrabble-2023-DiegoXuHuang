@@ -1,12 +1,28 @@
-from game.board import Board
-
 
 class Util():
-
-    def __init__(self):
-        board = Board()  
-        self.grid = board.grid
     
+  
+    def update_coordinates(self, orientation, row, col):
+        orientation_updates = {"H": (0, 1), "V": (1, 0)}
+        row_update, col_update = orientation_updates.get(orientation, (0, 0))
+        return row + row_update, col + col_update
+
+
+    def is_word_list(self, word):
+        return isinstance(word, list)
+    
+
+    def is_word_letters(self, letters):
+        return isinstance(letters, list)
+    
+
+    def is_word_set(self, letter_set):
+        return isinstance(letter_set, str)
+    
+
+    # def is_word_item(self, item):
+    #     return isinstance(item, str)
+
 
     def get_word_horizontal(self, row, col):
         word = []
@@ -59,6 +75,24 @@ class Util():
             word.append(self.grid[row][col + 1])
             col += 1
         return word
+    
+
+
+  
+
+
+    
+
+
+
+   
+    
+    
+
+    
+    
+
+    
     
 
 
