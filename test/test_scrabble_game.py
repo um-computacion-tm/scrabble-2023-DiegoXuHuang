@@ -351,16 +351,16 @@ class TestScrabbleGame(unittest.TestCase):
         scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(4))
         word = "mala"
         orientation = "V"
-        location = (4,8)
+        location = (4,10)
         scrabble_game.board.grid[7][7].add_letter(Tile("C",2))
         scrabble_game.board.grid[7][8].add_letter(Tile("A",1))
         scrabble_game.board.grid[7][9].add_letter(Tile("S",2))
         scrabble_game.board.grid[7][10].add_letter(Tile("A",1))
         scrabble_game.place_word_on_board(word, location, orientation)
-        self.assertEqual(scrabble_game.board.grid[4][8].letter.letter, "M") 
-        self.assertEqual(scrabble_game.board.grid[5][8].letter.letter, "A") 
-        self.assertEqual(scrabble_game.board.grid[6][8].letter.letter, "L") 
-        self.assertEqual(scrabble_game.board.grid[7][8].letter.letter, "A")
+        self.assertEqual(scrabble_game.board.grid[4][10].letter.letter, "M") 
+        self.assertEqual(scrabble_game.board.grid[5][10].letter.letter, "A") 
+        self.assertEqual(scrabble_game.board.grid[6][10].letter.letter, "L") 
+        self.assertEqual(scrabble_game.board.grid[7][10].letter.letter, "A")
 
 
  # VER COSO SE COLOCA 
@@ -375,11 +375,11 @@ class TestScrabbleGame(unittest.TestCase):
    |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
 3  | DLS |     |     | DWS |     |     |     | DLS |     |     |     | DWS |     |     | DLS |
    |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
-4  |     |     |     |     | DWS |     |     |     |     |     |  V  |     |     |     |     |
+4  |     |     |     |     | DWS |     |     |     |     |     |  M  |     |     |     |     |
    |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
 5  |     | TLS |     |     |     | TLS |     |     |     | TLS |  A  |     |     | TLS |     |
    |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
-6  |     |     | DLS |     |     |     | DLS |     | DLS |     |  C  |     | DLS |     |     |
+6  |     |     | DLS |     |     |     | DLS |     | DLS |     |  L  |     | DLS |     |     |
    |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
 7  | TWS |     |     | DLS |     |     |     |  C  |  A  |  S  |  A  | DLS |     |     | TWS |
    |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
