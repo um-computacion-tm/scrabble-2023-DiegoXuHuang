@@ -132,6 +132,14 @@ class ScrabbleGame:
     
 
 
+    def find_tile_letter(self, letter):
+        for tile in self.current_player.tiles:
+            if tile.letter == letter:
+                return tile
+        return None
+    
+
+
     def update_player_score(self, word_value):
         self.current_player.score += word_value
         self.previus = self.current_player.score - word_value
@@ -152,6 +160,24 @@ class ScrabbleGame:
         self.update_player_score(word_value)
 
         [cell.deactivate_cell() for cell in word_cell]
+
+    
+
+    def place_word_on_board(self, word, location, orientation):
+        row, col = location
+
+        if not self.validate_word(word, location, orientation):
+            return
+
+        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+
+        for letter in word:
+            selected_tile = self.find_tile_letter(letter)
+            if selected_tile:
+                tile_row, tile_col = self.util.update_coordinates(orientation, row, col)
+                self.board.grid[row][col].add_letter(selected_tile)
+                self.current_player.remove_tile(selected_tile)
+                row, col = tile_row, tile_col
    
 
 

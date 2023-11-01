@@ -6,8 +6,20 @@ TENER EN CUENTA: (DESPS SE BORRA)
 - cuando se cambia tile, max 7, sino Exception
 - comodin no poner mas de 1 letra, exception si tengo rr 
 
-## [0.2.8] 2023-10-31
+## [0.2.8] 2023-11-01
 
+### Added
+
+
+- add method split grup
+- add method place word on board and tests
+
+### Fixed
+
+
+- fixed problems in get direction
+
+## [0.2.8] 2023-10-31
 
 ### Added
 
