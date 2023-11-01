@@ -1,7 +1,7 @@
 import unittest
 from game.scrabble import ScrabbleGame, GameOverException
 from game.tile import Tile
-
+from game.util import Util
 
 
 class TestScrabbleGame(unittest.TestCase):
@@ -238,6 +238,194 @@ class TestScrabbleGame(unittest.TestCase):
 
 
 
+    def test_calculator_vertical(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.bag_tiles.tiles = [
+            Tile('C',3),
+            Tile('A',1),
+            Tile('S',1),
+            Tile('A',1),
+            Tile('B',3),
+        ]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(5))
+        word = "casa"
+        orientation = "V"
+        location = (7,7)
+        scrabble_game.place_word_on_board(word,location,orientation)
+        scrabble_game.calculator(word, location, orientation)
+
+
+    def test_calculator_horizontal(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.bag_tiles.tiles = [
+            Tile('C',3),
+            Tile('A',1),
+            Tile('S',1),
+            Tile('A',1),
+            Tile('B',3),
+        ]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(5))
+        word = "casa"
+        orientation = "H"
+        location = (7,7)
+        scrabble_game.place_word_on_board(word,location,orientation)
+        scrabble_game.calculator(word, location, orientation)
+
+
+    def test_calculator_score(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.bag_tiles.tiles = [
+            Tile('C', 3),
+            Tile('A', 1),
+            Tile('S', 1),
+            Tile('A', 1),
+            
+        ]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(4))
+        word = "casa"
+        orientation = "H"
+        location = (7,7)
+        scrabble_game.place_word_on_board(word,location,orientation)
+        scrabble_game.calculator(word, location, orientation)
+        self.assertEqual(scrabble_game.current_player.score, 12)
+
+    
+    def test_place_word_on_board_horizontal(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.bag_tiles.tiles = [
+            Tile('C', 3),
+            Tile('A', 1),
+            Tile('S', 1),
+            Tile('A', 1),
+        ]
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(4))
+        word = "casa"
+        orientation = "H"
+        location = (7, 7)
+        scrabble_game.place_word_on_board(word, location, orientation)
+        grid = scrabble_game.board.grid
+        self.assertEqual(grid[7][7].letter.letter, "C")
+        self.assertEqual(grid[7][8].letter.letter, "A")
+        self.assertEqual(grid[7][9].letter.letter, "S")
+        self.assertEqual(grid[7][10].letter.letter, "A")
+        self.assertEqual(scrabble_game.current_player.tiles, [])
+
+
+
+    def test_place_word_on_board_vertical(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.bag_tiles.tiles = [
+            Tile('C', 3),
+            Tile('A', 1),
+            Tile('S', 1),
+            Tile('A', 1),
+        ]
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(4))
+        word = "casa"
+        orientation = "V"
+        location = (7, 7)
+        scrabble_game.place_word_on_board(word, location, orientation)
+        grid = scrabble_game.board.grid
+        self.assertEqual(grid[7][7].letter.letter, "C")
+        self.assertEqual(grid[8][7].letter.letter, "A")
+        self.assertEqual(grid[9][7].letter.letter, "S")
+        self.assertEqual(grid[10][7].letter.letter, "A")
+        self.assertEqual(scrabble_game.current_player.tiles, [])
+
+
+
+    def test_place_word_on_board_vertical_crossing(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.bag_tiles.tiles = [
+            Tile('M', 3),
+            Tile('A', 1),
+            Tile('L', 1),
+            Tile('A', 1),
+        ]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(4))
+        word = "mala"
+        orientation = "V"
+        location = (4,8)
+        scrabble_game.board.grid[7][7].add_letter(Tile("C",2))
+        scrabble_game.board.grid[7][8].add_letter(Tile("A",1))
+        scrabble_game.board.grid[7][9].add_letter(Tile("S",2))
+        scrabble_game.board.grid[7][10].add_letter(Tile("A",1))
+        scrabble_game.place_word_on_board(word, location, orientation)
+        self.assertEqual(scrabble_game.board.grid[4][8].letter.letter, "M") 
+        self.assertEqual(scrabble_game.board.grid[5][8].letter.letter, "A") 
+        self.assertEqual(scrabble_game.board.grid[6][8].letter.letter, "L") 
+        self.assertEqual(scrabble_game.board.grid[7][8].letter.letter, "A")
+
+
+ # VER COSO SE COLOCA 
+    '''
+   |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  | 11  | 12  | 13  | 14 | 
+   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+0  | TWS |     |     | DLS |     |     |     | TWS |     |     |     | DLS |     |     | TWS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+1  |     | DWS |     |     |     | TLS |     |     |     | TLS |     |     |     | DWS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+2  |     |     | DWS |     |     |     | DLS |     | DLS |     |     |     | DWS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+3  | DLS |     |     | DWS |     |     |     | DLS |     |     |     | DWS |     |     | DLS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+4  |     |     |     |     | DWS |     |     |     |     |     |  V  |     |     |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+5  |     | TLS |     |     |     | TLS |     |     |     | TLS |  A  |     |     | TLS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+6  |     |     | DLS |     |     |     | DLS |     | DLS |     |  C  |     | DLS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+7  | TWS |     |     | DLS |     |     |     |  C  |  A  |  S  |  A  | DLS |     |     | TWS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+8  |     |     | DLS |     |     |     | DLS |     | DLS |     |     |     | DLS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+9  |     | TLS |     |     |     | TLS |     |     |     | TLS |     |     |     | TLS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+10 |     |     |     |     | DWS |     |     |     |     |     | DWS |     |     |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+11 | DLS |     |     | DWS |     |     |     | DLS |     |     |     | DWS |     |     | DLS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+12 |     |     | DWS |     |     |     | DLS |     | DLS |     |     |     | DWS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+13 |     | DWS |     |     |     | TLS |     |     |     | TLS |     |     |     | DWS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+14 | TWS |     |     | DLS |     |     |     | TWS |     |     |     | DLS |     |     | TWS |
+   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+
+   '''
+    
+    def test_place_word_on_board_horizontal_with_split_groups_in_string(self):
+        scrabble_game = ScrabbleGame(1)
+        util = Util(scrabble_game)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.bag_tiles.tiles = [
+            Tile('LL',8),
+            Tile('A', 1),
+            Tile('V', 4),
+            Tile('E', 1),
+        ]
+        scrabble_game.current_player.tiles.extend(scrabble_game.bag_tiles.take(4))
+        old_word = "llave"
+        orientation = "H"
+        location = (7,7)
+        word = util.split_groups_in_string(old_word)
+        scrabble_game.place_word_on_board(word, location, orientation)
+
+        self.assertEqual(scrabble_game.board.grid[7][7].letter.letter, "LL") 
+        self.assertEqual(scrabble_game.board.grid[7][8].letter.letter, "A") 
+        self.assertEqual(scrabble_game.board.grid[7][9].letter.letter, "V") 
+        self.assertEqual(scrabble_game.board.grid[7][10].letter.letter, "E")
+
+    
+
+
 
 
 
@@ -255,19 +443,6 @@ class TestScrabbleGame(unittest.TestCase):
 
 
 
-
-
-
-
-
-
-
-
-    
-
-
-
-        
 
 
 if __name__ == '__main__':
