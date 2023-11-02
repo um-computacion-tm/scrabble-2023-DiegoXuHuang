@@ -5,4 +5,4 @@ RUN git clone https://github.com/um-computacion-tm/scrabble-2023-DiegoXuHuang.gi
 WORKDIR /scrabble-2023-DiegoXuHuang
 RUN pip install -r requirements.txt
 
-CMD [ "sh", "-c", "coverage run -m unittest && coverage report -m && python -m main.py " ]
+CMD [ "sh", "-c", "coverage run -m unittest && coverage report -m && python -m game.main " ]

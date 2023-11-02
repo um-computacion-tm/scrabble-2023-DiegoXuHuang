@@ -78,15 +78,6 @@ class TestCell(unittest.TestCase):
 
 
 
-    # def test_repr_without_letter(self):
-    #     instance = Cell(letter=None, multiplier=2, multiplier_type='D')
-    #     self.assertEqual(repr(instance), 'Dx2')
-
-    # def test_repr_without_letter_and_multiplier_one(self):
-    #     instance = Cell(letter=None, multiplier=1)
-    #     self.assertEqual(repr(instance), '   ')
-
-
     @parameterized.expand([
         ("Single Letter", Cell(1, None, Tile("X", 1), True), " X "),
         ("Two Letters", Cell(1, None, Tile("CH", 1), True), "CH "),

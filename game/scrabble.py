@@ -18,18 +18,21 @@ class MissingLettersException(Exception):
     pass
 
 
-
+    
 class ScrabbleGame:
     def __init__(self, players_count):
         self.board = Board()
         self.bag_tiles = BagTiles()
         self.players = [Player() for _ in range(players_count)]
+        #self.current_player = self.players[0]
         self.current_player = None
+        '''REVISAR'''
         self.turn = 0
-        self.util = Util()
+        self.util = Util(self.board)
         self.board.add_premium_cells()
         self.dictionary = Dictionary('dictionaries/diccionario.txt')
         self.players_count = players_count
+        
 
 
     # cli
@@ -48,9 +51,15 @@ class ScrabbleGame:
     
 
     def next_turn(self):
-        index = (self.players.index(self.current_player) + 1)
-        if index >= self.players_count:index=0
-        self.current_player = self.players[index]
+        if self.current_player is None:
+            self.current_player = self.players[0]
+        else:
+            for i, player in enumerate(self.players):
+                if player == self.current_player:
+                    index = (i + 1) % len(self.players)
+                    self.current_player = self.players[index]
+                    break
+
 
 
     # TESTING
@@ -80,7 +89,6 @@ class ScrabbleGame:
     
 
 
-    
     def end_game(self):
 
         if self.is_board_full() or (not self.bag_tiles.tiles and not self.current_player.tiles):
@@ -95,21 +103,21 @@ class ScrabbleGame:
         
         self.show_results()
         sys.exit(0) 
+
+
+
+    
+            
+
     
     
     # ending scrore
     # show score
-    def end_score(self):
-        self.players.sort(key=attrgetter('score'), reverse=True)
-        return [(player.name, player.score) for player in self.players]
     
 
     def has_wildcard(self):
         return any(tile.value == 0 for tile in self.current_player.tiles)
     
-
-    # def check_orientation_valid(self, orientation):
-    #     return orientation if orientation in {'H', 'V'} else None
 
 
     def get_word_score(self, cells, word_value_calculator = CalculateWordValue()):
@@ -138,10 +146,9 @@ class ScrabbleGame:
 
     def remove_tile_from_player(self, tile):
         self.current_player.remove_tile(tile)
-    
 
 
-    def find_tile_letter(self, letter):
+    def find_selected_tile(self, letter):
         for tile in self.current_player.tiles:
             if tile.letter == letter:
                 return tile
@@ -149,16 +156,18 @@ class ScrabbleGame:
     
 
     def place_letter_on_board(self, letter, row, col):
-        selected_tile = self.find_tile_letter(letter)
+        selected_tile = self.find_selected_tile(letter)
         if selected_tile:
             self.add_letter_to_board(selected_tile, row, col)
             self.remove_tile_from_player(selected_tile)
 
-   
+
+
 
     def update_player_score(self, word_value):
         self.current_player.score += word_value
         self.previus = self.current_player.score - word_value
+
 
 
     def iterate_word_letters(self, word, location, orientation):
@@ -176,11 +185,9 @@ class ScrabbleGame:
             if word_cells is not False:
                 word_cells_groups.append(word_cells)
 
-            # Actualiza las coordenadas independientemente de la orientación
             row, col = self.util.update_coordinates(orientation, row, col)
 
         return word_cells_groups
-
 
 
 
@@ -200,12 +207,13 @@ class ScrabbleGame:
 
 
 
+    
+
     def rank_players_high_to_low_score(self):
         self.players.sort(key=attrgetter('score'), reverse=True)
         return [(player.name, player.score) for player in self.players]
     
-    
-    
+   
     def show_results(self):
         top_players = self.rank_players_high_to_low_score()
 
@@ -217,12 +225,11 @@ class ScrabbleGame:
             for position, (player, score) in enumerate(top_players, 1):
                 print(f"| {player:16} | {score:5} |")
             print("+------------------+-------+")
+            print(f"GANADOR --> {top_players[0][0]}")
+        
 
-            print(f"GANADOR: {top_players[0][0]}")
 
     
-
-
     def place_word_on_board(self, word, location, orientation):
         valid_word = self.validate_word(word, location, orientation)
         row, col = location
@@ -238,6 +245,50 @@ class ScrabbleGame:
                 row, col = self.util.update_coordinates(orientation, row, col)
 
     
+
+    
+    def validate_and_score_word(self, word, location, orientation):
+        word_cells_groups = self.iterate_word_letters(word, location, orientation)
+        total_score = 0
+
+        for cell_group in word_cells_groups:
+            if all(not cell.active for cell in cell_group):
+                continue
+
+            word = "".join(cell.letter.get_letter() for cell in cell_group)
+
+            if self.dictionary.is_valid_scrabble_word(word):
+                total_score += CalculateWordValue().calculate_word(cell_group)
+            else:
+                return False
+
+        if total_score > 0:
+            self.current_player.score += total_score
+
+        return True
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+
+    
+                
+
+        
+
+        
 
     
 
@@ -271,3 +322,6 @@ class ScrabbleGame:
         
 
         
+
+
+    

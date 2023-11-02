@@ -1,5 +1,6 @@
-# scrabble-2023-DiegoXuHuang
-scrabble-2023-DiegoXuHuang created by GitHub Classroom
+# Scrabble Game
+
+
 
 # main
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/um-computacion-tm/scrabble-2023-DiegoXuHuang/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/um-computacion-tm/scrabble-2023-DiegoXuHuang/tree/main)
@@ -11,5 +12,5 @@ scrabble-2023-DiegoXuHuang created by GitHub Classroom
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5cecdd26079c4eddf2de/test_coverage)](https://codeclimate.com/github/um-computacion-tm/scrabble-2023-DiegoXuHuang/test_coverage)
 
 
-# Author 
-## Xu Huang Diego 62225(Legajo)
+## Author 
+### Xu Huang Diego 62225(Legajo)

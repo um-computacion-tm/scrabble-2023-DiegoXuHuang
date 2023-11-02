@@ -9,6 +9,7 @@ class Util():
         orientation_updates = {"H": (0, 1), "V": (1, 0)}
         row_update, col_update = orientation_updates.get(orientation, (0, 0))
         return row + row_update, col + col_update
+  
 
 
     def is_word_list(self, word):

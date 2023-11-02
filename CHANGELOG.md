@@ -12,11 +12,14 @@ TENER EN CUENTA: (DESPS SE BORRA)
 
 
 - add method iterate word 
+- add method validate_and_score_word
+- add method start game, player count, get player name, display rules, print welcome, show tiles, show score, exchange tile and wilcard
 
 ### Fixed
 
 
 - fixed place word
+- fixed next turn
 
 ## [0.2.8] 2023-11-01
 

@@ -7,7 +7,6 @@ class TestTile(unittest.TestCase):
         tile = Tile("A", 1)
         self.assertEqual(tile.get_value(), 1)
    
-
     def test_get_letter(self):
         tile = Tile("B", 3)
         self.assertEqual(tile.get_letter(), "B")
@@ -26,6 +25,10 @@ class TestTile(unittest.TestCase):
         expected_repr = 'A:1'
         self.assertEqual(repr(tile), expected_repr)
 
+    def test_set_letter(self):
+        tile = Tile('A', 1)
+        tile.set_letter('Z')
+        self.assertEqual(tile.letter, 'Z')
     
 
 if __name__ == '__main__':
