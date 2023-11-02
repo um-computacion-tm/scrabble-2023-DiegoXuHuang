@@ -80,21 +80,22 @@ class Board:
 
         return False
     
-
+    
 
     def validate_word_placement_in_occupied_grid(self, orientation):
-        for i in self.word:
-            cell = self.grid[self.position_row][self.position_col]
+        for letter in self.word:
+            row, col = self.position_row, self.position_col
 
-            if cell.letter is not None and i != cell.letter.letter:
+            out_of_bounds = not (0 <= row < len(self.grid)) or not (0 <= col < len(self.grid[0]))
+            cell = self.grid[row][col]
+
+            if out_of_bounds or (cell.letter is not None and letter != cell.letter.letter):
                 return False
 
-            if self.util.is_word_letters(self.mletter):
-                self.mletter = [l for l in self.mletter if l != i]
-            else:
-                self.mletter = "".join([l for l in self.mletter if l != i])
+            self.mletter = [l for l in self.mletter if l != letter] if self.util.is_word_letters(self.mletter) else ''.join(l for l in self.mletter if l != letter)
 
-            self.position_row, self.position_col = self.update_position(orientation)
+            row, col = self.update_position(orientation)
+            self.position_row, self.position_col = row, col
 
         return True
     

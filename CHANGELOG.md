@@ -13,11 +13,14 @@ TENER EN CUENTA: (DESPS SE BORRA)
 - add show result game 
 - add method split grup
 - add method place word on board and tests
+- add method get player count in scabble cli
 
 ### Fixed
 
 
 - fixed problems in get direction
+- fixed problems in validate word placemente
+- finish in class Board
 
 ## [0.2.8] 2023-10-31
 

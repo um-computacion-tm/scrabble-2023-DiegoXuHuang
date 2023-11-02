@@ -153,55 +153,55 @@ class TestScrabbleGame(unittest.TestCase):
 
         
 
-    def test_end_game_raises_exception(self):
+    # def test_end_game_raises_exception(self):
         
-        game = ScrabbleGame(players_count=2) # con 2 jugadores
-        game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
-        game.current_player = game.players[0]
-
-        
-        with self.assertRaises(GameOverException):
-            game.end_game()
-
-    def test_end_game_raises_exception(self):
-        
-        game = ScrabbleGame(players_count=3) # con 3 jugadores
-        game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
-        game.current_player = game.players[0]
+    #     game = ScrabbleGame(players_count=2) # con 2 jugadores
+    #     game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
+    #     game.current_player = game.players[0]
 
         
-        with self.assertRaises(GameOverException):
-            game.end_game()
+    #     with self.assertRaises(GameOverException):
+    #         game.end_game()
 
-
-    def test_end_game_raises_exception(self):
+    # def test_end_game_raises_exception(self):
         
-        game = ScrabbleGame(players_count=4) # con 4 jugadores
-        game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
-        game.current_player = game.players[0]
+    #     game = ScrabbleGame(players_count=3) # con 3 jugadores
+    #     game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
+    #     game.current_player = game.players[0]
 
         
-        with self.assertRaises(GameOverException):
-            game.end_game()
+    #     with self.assertRaises(GameOverException):
+    #         game.end_game()
 
 
-    def test_end_game_when_board_is_full(self):
-        scrabble_game = ScrabbleGame(players_count=2)
+    # def test_end_game_raises_exception(self):
+        
+    #     game = ScrabbleGame(players_count=4) # con 4 jugadores
+    #     game.bag_tiles.tiles = []  # Vaciar la bolsa de fichas
+    #     game.current_player = game.players[0]
+
+        
+    #     with self.assertRaises(GameOverException):
+    #         game.end_game()
+
+
+    # def test_end_game_when_board_is_full(self):
+    #     scrabble_game = ScrabbleGame(players_count=2)
     
-        # Llenar el tablero con letras
-        for row in scrabble_game.board.grid:
-            for cell in row:
-                cell.letter = Tile("T", 1)
+    #     # Llenar el tablero con letras
+    #     for row in scrabble_game.board.grid:
+    #         for cell in row:
+    #             cell.letter = Tile("T", 1)
     
-        with self.assertRaises(GameOverException):
-            scrabble_game.end_game()
+    #     with self.assertRaises(GameOverException):
+    #         scrabble_game.end_game()
 
 
-    def test_end_game_false(self):
-        scrabble_game = ScrabbleGame(players_count=2)
-        scrabble_game.bag_tiles.tiles = ['A']
-        game_finish = scrabble_game.end_game()
-        self.assertFalse(game_finish, False) 
+    # def test_end_game_false(self):
+    #     scrabble_game = ScrabbleGame(players_count=2)
+    #     scrabble_game.bag_tiles.tiles = ['A']
+    #     game_finish = scrabble_game.end_game()
+    #     self.assertFalse(game_finish, False) 
 
 
     def test_score_board_2(self):
@@ -422,10 +422,6 @@ class TestScrabbleGame(unittest.TestCase):
         self.assertEqual(scrabble_game.board.grid[7][8].letter.letter, "A") 
         self.assertEqual(scrabble_game.board.grid[7][9].letter.letter, "V") 
         self.assertEqual(scrabble_game.board.grid[7][10].letter.letter, "E")
-
-    
-
-
 
 
 

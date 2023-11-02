@@ -18,12 +18,6 @@ class MissingLettersException(Exception):
     pass
 
 
-'''---dddd--'''
-class EndTurnException(Exception):
-    pass
-
-class InvalidWordException(Exception):
-    pass
 
 class ScrabbleGame:
     def __init__(self, players_count):
@@ -35,6 +29,7 @@ class ScrabbleGame:
         self.util = Util()
         self.board.add_premium_cells()
         self.dictionary = Dictionary('dictionaries/diccionario.txt')
+        self.players_count = players_count
 
 
     # cli
@@ -85,14 +80,20 @@ class ScrabbleGame:
     
 
 
+    
     def end_game(self):
+
         if self.is_board_full() or (not self.bag_tiles.tiles and not self.current_player.tiles):
-            raise GameOverException
-            #self.end_game_directly(message)
+            self.end_game_directly()
+            
+        # falta poner la opcion de termianr el juego direcemtanete mostrando el resultado final
+            
 
-
+    #test
     def end_game_directly(self, message="El juego ha sido finalizado"):
         print(message)
+        
+        self.show_results()
         sys.exit(0) 
     
     
@@ -161,23 +162,23 @@ class ScrabbleGame:
 
         [cell.deactivate_cell() for cell in word_cell]
 
-    
 
-    def place_word_on_board(self, word, location, orientation):
-        row, col = location
+    # Fixing    
+    # def place_word_on_board(self, word, location, orientation):
+    #     row, col = location
 
-        if not self.validate_word(word, location, orientation):
-            return
+    #     if not self.validate_word(word, location, orientation):
+    #         return
 
-        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+    #     word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
 
-        for letter in word:
-            selected_tile = self.find_tile_letter(letter)
-            if selected_tile:
-                tile_row, tile_col = self.util.update_coordinates(orientation, row, col)
-                self.board.grid[row][col].add_letter(selected_tile)
-                self.current_player.remove_tile(selected_tile)
-                row, col = tile_row, tile_col
+    #     for letter in word:
+    #         selected_tile = self.find_tile_letter(letter)
+    #         if selected_tile:
+    #             tile_row, tile_col = self.util.update_coordinates(orientation, row, col)
+    #             self.board.grid[row][col].add_letter(selected_tile)
+    #             self.current_player.remove_tile(selected_tile)
+    #             row, col = tile_row, tile_col
 
     
     def rank_players_high_to_low_score(self):
