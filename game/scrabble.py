@@ -161,6 +161,27 @@ class ScrabbleGame:
         self.previus = self.current_player.score - word_value
 
 
+    def iterate_word_letters(self, word, location, orientation):
+        row, col = location
+        word_cells_groups = []
+
+        for letter in word:
+            if orientation == "V":
+                word_cells = self.util.get_word_horizontal(row, col)
+            elif orientation == "H":
+                word_cells = self.util.get_word_vertical(row, col)
+            else:
+                raise ValueError("La orientación debe ser 'V' (vertical) o 'H' (horizontal)")
+
+            if word_cells is not False:
+                word_cells_groups.append(word_cells)
+
+            # Actualiza las coordenadas independientemente de la orientación
+            row, col = self.util.update_coordinates(orientation, row, col)
+
+        return word_cells_groups
+
+
 
 
     def calculator(self, word, location, orientation):
@@ -198,6 +219,24 @@ class ScrabbleGame:
             print("+------------------+-------+")
 
             print(f"GANADOR: {top_players[0][0]}")
+
+    
+
+
+    def place_word_on_board(self, word, location, orientation):
+        valid_word = self.validate_word(word, location, orientation)
+        row, col = location
+
+        if valid_word:
+            if isinstance(word, list):
+                word = [letter.upper() for letter in word]
+            else:
+                word = word.upper()
+
+            for letter in word:
+                self.place_letter_on_board(letter, row, col)
+                row, col = self.util.update_coordinates(orientation, row, col)
+
     
 
     
