@@ -132,6 +132,14 @@ class ScrabbleGame:
         return cells
     
 
+    def add_letter_to_board(self, tile, row, col):
+        self.board.grid[row][col].add_letter(tile)
+
+
+    def remove_tile_from_player(self, tile):
+        self.current_player.remove_tile(tile)
+    
+
 
     def find_tile_letter(self, letter):
         for tile in self.current_player.tiles:
@@ -140,6 +148,13 @@ class ScrabbleGame:
         return None
     
 
+    def place_letter_on_board(self, letter, row, col):
+        selected_tile = self.find_tile_letter(letter)
+        if selected_tile:
+            self.add_letter_to_board(selected_tile, row, col)
+            self.remove_tile_from_player(selected_tile)
+
+   
 
     def update_player_score(self, word_value):
         self.current_player.score += word_value
@@ -163,27 +178,11 @@ class ScrabbleGame:
         [cell.deactivate_cell() for cell in word_cell]
 
 
-    # Fixing    
-    # def place_word_on_board(self, word, location, orientation):
-    #     row, col = location
 
-    #     if not self.validate_word(word, location, orientation):
-    #         return
-
-    #     word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
-
-    #     for letter in word:
-    #         selected_tile = self.find_tile_letter(letter)
-    #         if selected_tile:
-    #             tile_row, tile_col = self.util.update_coordinates(orientation, row, col)
-    #             self.board.grid[row][col].add_letter(selected_tile)
-    #             self.current_player.remove_tile(selected_tile)
-    #             row, col = tile_row, tile_col
-
-    
     def rank_players_high_to_low_score(self):
         self.players.sort(key=attrgetter('score'), reverse=True)
         return [(player.name, player.score) for player in self.players]
+    
     
     
     def show_results(self):
