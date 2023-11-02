@@ -10,7 +10,7 @@ TENER EN CUENTA: (DESPS SE BORRA)
 
 ### Added
 
-
+- add show result game 
 - add method split grup
 - add method place word on board and tests
 

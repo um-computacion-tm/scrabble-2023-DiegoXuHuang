@@ -17,8 +17,13 @@ class GameOverException(Exception):
 class MissingLettersException(Exception):
     pass
 
-'''---dddd--'''
 
+'''---dddd--'''
+class EndTurnException(Exception):
+    pass
+
+class InvalidWordException(Exception):
+    pass
 
 class ScrabbleGame:
     def __init__(self, players_count):
@@ -30,9 +35,6 @@ class ScrabbleGame:
         self.util = Util()
         self.board.add_premium_cells()
         self.dictionary = Dictionary('dictionaries/diccionario.txt')
-
-
-    
 
 
     # cli
@@ -51,11 +53,9 @@ class ScrabbleGame:
     
 
     def next_turn(self):
-        if self.current_player is None:
-            self.current_player = self.players[0]
-        else:
-            index = (self.players.index(self.current_player) + 1) % len(self.players)
-            self.current_player = self.players[index]
+        index = (self.players.index(self.current_player) + 1)
+        if index >= self.players_count:index=0
+        self.current_player = self.players[index]
 
 
     # TESTING
@@ -178,7 +178,32 @@ class ScrabbleGame:
                 self.board.grid[row][col].add_letter(selected_tile)
                 self.current_player.remove_tile(selected_tile)
                 row, col = tile_row, tile_col
-   
+
+    
+    def rank_players_high_to_low_score(self):
+        self.players.sort(key=attrgetter('score'), reverse=True)
+        return [(player.name, player.score) for player in self.players]
+    
+    
+    def show_results(self):
+        top_players = self.rank_players_high_to_low_score()
+
+        if top_players:
+            print("Puntaje Final:")
+            print("+------------------+-------+")
+            print("| Jugadores        | Score |")
+            print("+------------------+-------+")
+            for position, (player, score) in enumerate(top_players, 1):
+                print(f"| {player:16} | {score:5} |")
+            print("+------------------+-------+")
+
+            print(f"GANADOR: {top_players[0][0]}")
+    
+
+    
+
+
+
 
 
 
