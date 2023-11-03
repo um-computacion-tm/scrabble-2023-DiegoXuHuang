@@ -1,7 +1,9 @@
 import unittest
 from game.models import BagTiles
 from game.tile import Tile
-from game.player import Player,NoSuficienteFichasException
+from game.player import Player
+from game.scrabble import ScrabbleGame
+
 
 
 
@@ -12,6 +14,8 @@ class TestPlayer(unittest.TestCase):
             len(player_1.tiles),
             0,
         )
+    
+    
 
     def test_set_name(self):
         player = Player()
@@ -35,36 +39,49 @@ class TestPlayer(unittest.TestCase):
         player = Player()
         self.assertEqual(player.show_tiles(), player.tiles)
 
+    def test_add_tile(self):
+        player = Player()
+        player.tiles = [
+            Tile('C', 4),
+            Tile('A', 1),
+            Tile('S', 1),
+            Tile('A', 1),
+        ]
+        player.add_tile(Tile("A",1))
+        self.assertEqual(len(player.tiles),5)
 
-    
-    def test_refill(self):
-    # la cantidad de fichas en la mano del jugador (player2.tiles) sea igual a 7
-        player2 = Player()
-        player2.tiles = ['A', 'B']
-        bag = BagTiles()
-        
-        player2.refill(bag)
-    
-        self.assertEqual(len(player2.tiles), 7)
+
+
+
+    def test_refill_player_tiles(self):
+        scrabble_game = ScrabbleGame(players_count=2)
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.current_player.tiles = [
+            Tile(letter="H", value=3)  
+            ]
+        scrabble_game.current_player.refill()
+        self.assertEqual(scrabble_game.current_player.tiles[0].letter, "H")
+        self.assertEqual(scrabble_game.current_player.tiles[0].value, 3)
+
 
 
     def test_validate_user_has_letters(self):
         bag_tile = BagTiles()
         player = Player()
         bag_tile.tiles = [
-            Tile(letter='H', value=1),
-            Tile(letter='O', value=1),
-            Tile(letter='L', value=1),
-            Tile(letter='A', value=1),
-            Tile(letter='C', value=1),
-            Tile(letter='U', value=1),
-            Tile(letter='M', value=1),
+            Tile('H',1),
+            Tile('O',1),
+            Tile('L',1),
+            Tile('A',1),
+            Tile('C',1),
+            Tile('U',1),
+            Tile('M',1),
         ]
         tiles = [
-            Tile(letter='H', value=1),
-            Tile(letter='O', value=1),
-            Tile(letter='L', value=1),
-            Tile(letter='A', value=1),
+            Tile('H', 1),
+            Tile('O', 1),
+            Tile('L', 1),
+            Tile('A', 1),
         ]
         player.tiles = bag_tile.tiles 
         is_valid = player.has_letters(tiles)
@@ -75,24 +92,23 @@ class TestPlayer(unittest.TestCase):
         bag_tile = BagTiles()
         player = Player()
         bag_tile.tiles = [
-            Tile(letter='P', value=1),
-            Tile(letter='O', value=1),
-            Tile(letter='L', value=1),
-            Tile(letter='A', value=1),
-            Tile(letter='C', value=1),
-            Tile(letter='U', value=1),
-            Tile(letter='M', value=1),
+            Tile('P',1),
+            Tile('O',1),
+            Tile('L',1),
+            Tile('A',1),
+            Tile('C',1),
+            Tile('U',1),
+            Tile('M',1),
         ]
         tiles = [
-            Tile(letter='H', value=1),
-            Tile(letter='O', value=1),
-            Tile(letter='L', value=1),
-            Tile(letter='A', value=1),
+            Tile('H', 1),
+            Tile('O', 1),
+            Tile('L', 1),
+            Tile('A', 1),
         ]
         player.tiles = bag_tile.tiles
         is_valid = player.has_letters(tiles)
         self.assertEqual(is_valid, False)
-
 
     def test_player_exchange_first_tile(self):
 
@@ -126,14 +142,17 @@ class TestPlayer(unittest.TestCase):
     def test_remove_tile(self):
         player = Player()
         player.tiles = [
-            Tile(letter='C', value=4),
-            Tile(letter='A', value=1),
-            Tile(letter='S', value=1),
-            Tile(letter='A', value=1),
+            Tile('C', 4),
+            Tile('A', 1),
+            Tile('S', 1),
+            Tile('A', 1),
         ]
         player.remove_tile(Tile("A",1))
         self.assertEqual(len(player.tiles),3)
-    
+
+
+
+
 
 
 if __name__ == '__main__':

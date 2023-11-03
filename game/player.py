@@ -1,26 +1,40 @@
 
 from game.tile import Tile
 from game.models import BagTiles
+from game.models import BagTiles
+from game.util import Util
+
 
 
 class NoSuficienteFichasException(Exception):
     pass
 
 class Player:
-    def __init__(self, score = 0,):
+    def __init__(self):
         self.tiles = []
-        self.score = score  
+        self.score = 0  
         self.name = ""
-      
-    
+        #self.current_player = self
+        self.bag_tiles = BagTiles()
+        self.util = Util()
+
+
+     
+    def refill(self):
+        max_tiles_to_take = 7 - len(self.tiles)
+        if max_tiles_to_take > 0:
+            tiles_to_take = self.bag_tiles.take(max_tiles_to_take)
+            self.tiles.extend(tiles_to_take)
+
+
+    def add_tile(self, tile:Tile):
+        self.tiles.append(tile)
+        
     def set_name(self, name):
         self.name = name
     
     def get_name(self):
         return self.name
-
-    def get_tiles(self, bag: BagTiles, amount):
-        self.tiles += bag.take(amount)
 
     def show_tiles(self):
         return self.tiles
@@ -35,38 +49,33 @@ class Player:
 
     def get_score(self):
         return self.score
-    
-    def refill(self, bag: BagTiles):
-        # Calcula la cantidad de fichas que se necesitan para llegar a un total de 7.
-        tiles_needed = 7 - len(self.tiles)
-    
-        # Llama al método "take" del objeto "bag" para obtener las fichas necesarias.
-        new_tiles = bag.take(tiles_needed)
-    
-        # Extiende la lista "self.tiles" con las nuevas fichas obtenidas.
-        self.tiles.extend(new_tiles)
 
-    def has_letters(self, tiles=[]):
-        # Obtén las letras de las fichas del jugador
-        player_letters = [tile.letter for tile in self.tiles]
-    
-        # Obtén las letras de las fichas que se pasaron como argumento
-        word_letters = [tile.letter for tile in tiles]
-    
-        # Itera sobre las letras necesarias de las fichas que se pasaron como argumento
-        for letra in word_letters:
-            # Verifica si la letra está en las fichas del jugador
-            if letra in player_letters:
-                # Si la letra está en las fichas del jugador, quítala de la lista
-                # Esto asegura que una ficha no se use más de una vez
-                player_letters.remove(letra)
+
+    def has_letters(self, letter_set):
+        letter_inventory = {tile.letter: 0 for tile in self.tiles}
+
+        
+        if self.util.is_word_set(str):
+            letter_set = letter_set.upper()
+       
+        elif all(isinstance(item, str) for item in letter_set):
+            letter_set = [letter.upper() for letter in letter_set]
+        else:
+            letter_set = [letter.letter for letter in letter_set]
+
+        for tile in self.tiles:
+            letter_inventory[tile.letter] += 1
+
+        for letter in letter_set:
+            if letter in letter_inventory and letter_inventory[letter] > 0:
+                letter_inventory[letter] -= 1
             else:
-                # Si la letra no está en las fichas del jugador, la palabra no se puede formar
                 return False
-    
-        # Si se llega a este punto, significa que todas las letras necesarias están disponibles
+
         return True
     
+   
+        
     def exchange_tile(self, bag: BagTiles, tile_exchange):
         if tile_exchange in self.tiles:
             self.tiles.remove(tile_exchange)
@@ -74,39 +83,13 @@ class Player:
             bag.shuffle_bag()
             self.tiles.append(bag.take(1)[0])
     
+    
     def remove_tile(self, tile: Tile):
         for i in self.tiles:
             if i.letter == tile.letter:
                 self.tiles.remove(i)
-                print(f"Tile {i.letter} eliminado.")
                 break
 
-
-
-
-
-
-
-
-
-
-
-
-                    
-    
-    
-    
-    
-    
-
-
-
-    
-
-    
-
-
-
     
 
 
@@ -115,35 +98,3 @@ class Player:
 
 
 
-                
-    #nuevo 
-    # def validate_letter(self, letter):
-    #     if letter in self.tiles:
-    #         return True
-    #     return False
-
-
-    #--------
-
-    # def __init__(self, bag_tiles):
-    #     self.tiles = bag_tiles.take(7)
-    #     self.bag_tiles = bag_tiles
-
-    # def rellenar(self, bag_tiles):
-    #     self.tiles += bag_tiles.take(
-    #         7 - len(self.tiles)
-    #     )
-   
-    # def has_letter(self):
-    #     pass
-
-
-# terminar turnos de los jugadores
-
-# turno no deberia superar la cantidad 
-
-# 0
-# 1
-# 2
-# 3
-# 4

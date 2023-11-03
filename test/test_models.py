@@ -43,7 +43,7 @@ class TestBagTiles(unittest.TestCase):
         bag = BagTiles()
         self.assertEqual(
             len(bag.tiles),
-            98,
+            100,
         )
         self.assertEqual(
             patch_shuffle.call_count,
@@ -59,7 +59,7 @@ class TestBagTiles(unittest.TestCase):
         tiles = bag.take(2)
         self.assertEqual(
             len(bag.tiles),
-            96,
+            98,
         )
         self.assertEqual(
             len(tiles),
@@ -72,7 +72,7 @@ class TestBagTiles(unittest.TestCase):
         bag.put(put_tiles)
         self.assertEqual(
             len(bag.tiles),
-            100,
+            102,
         )
 
 

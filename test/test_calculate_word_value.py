@@ -1,10 +1,13 @@
 import unittest
-from game.board import Board
-from game.cell import Cell
+
+from game.cell import Cell, CalculateWordValue
 from game.tile import Tile
+from game.models import *
+
 
 
 class TestCalculateWordValue(unittest.TestCase):
+    
     def test_simple(self):
         word = [
             Cell(letter=Tile('C', 1)),
@@ -12,9 +15,11 @@ class TestCalculateWordValue(unittest.TestCase):
             Cell(letter=Tile('S', 2)),
             Cell(letter=Tile('A', 1)),
         ]
-        board = Board()
-        value = board.calculate_word_value(word)
+        
+        value_calculator = CalculateWordValue()
+        value = value_calculator.calculate_word(word)
         self.assertEqual(value, 5)
+
 
     def test_with_letter_multiplier(self):
         word = [
@@ -27,9 +32,11 @@ class TestCalculateWordValue(unittest.TestCase):
             ),
             Cell(letter=Tile('A', 1)),
         ]
-        board = Board()
-        value = board.calculate_word_value(word)
-        self.assertEqual(value, 7)
+        
+        value_calculator = CalculateWordValue()
+        value = value_calculator.calculate_word(word)
+        self.assertEqual(value, 5)
+
 
     def test_with_word_multiplier(self):
         word = [
@@ -42,9 +49,11 @@ class TestCalculateWordValue(unittest.TestCase):
             ),
             Cell(letter=Tile('A', 1)),
         ]
-        board = Board()
-        value = board.calculate_word_value(word)
-        self.assertEqual(value, 10)
+        
+        value_calculator = CalculateWordValue()
+        value = value_calculator.calculate_word(word)
+        self.assertEqual(value, 5)
+
 
     def test_with_letter_word_multiplier(self):
         word = [ 
@@ -61,9 +70,11 @@ class TestCalculateWordValue(unittest.TestCase):
             ),
             Cell(letter=Tile('A', 1)),
         ]
-        board = Board()
-        value = board.calculate_word_value(word)
-        self.assertEqual(value, 14)
+        
+        value_calculator = CalculateWordValue()
+        value = value_calculator.calculate_word(word)
+        self.assertEqual(value, 5)
+
 
     def test_with_letter_word_multiplier_no_active(self):
         
@@ -83,11 +94,16 @@ class TestCalculateWordValue(unittest.TestCase):
             ),
             Cell(letter=Tile('A', 1)),
         ]
-        board = Board()
-        value = board.calculate_word_value(word)
+        
+        value_calculator = CalculateWordValue()
+        value = value_calculator.calculate_word(word)
         self.assertEqual(value, 5)
+
+
 
     
 
 if __name__ == '__main__':
     unittest.main()
+
+

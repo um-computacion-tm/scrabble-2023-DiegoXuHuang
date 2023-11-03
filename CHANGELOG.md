@@ -2,12 +2,151 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-11-03 Finish
+
+### Added
+
+
+- Add more method in Scrabble cli and test
+
+### Fixed
+
+
+- finish fixed board
+
+## [0.2.8] 2023-11-02
+
+### Added
+
+
+- add method iterate word 
+- add method validate_and_score_word
+- add method start game, player count, get player name, display rules, print welcome, show tiles, show score, exchange tile and wilcard
+
+### Fixed
+
+
+- fixed place word
+- fixed next turn
+
+## [0.2.8] 2023-11-01
+
+### Added
+
+- add show result game 
+- add method split grup
+- add method place word on board and tests
+- add method get player count in scabble cli
+
+### Fixed
+
+
+- fixed problems in get direction
+- fixed problems in validate word placemente
+- finish in class Board
+
+## [0.2.8] 2023-10-31
+
+### Added
+
+
+- add method calculator
+
+## [0.2.8] 2023-10-30
+
+### Added
+
+
+- add methos for ending game, willcard,get/update word score and cell
+- add tests for those methods
+- add rep in cell and test
+- add method word_list,letter, update coordinates in util
+
+### Fixed
+
+
+- fixed refill in player and test
+- Deleted validate place board, pending to solve
+
+## [0.2.8] 2023-10-29
+
+### Changed
+
+
+- simplify the batgtil
+
+### Fixed
+
+
+- Fixed calculate value and calculate word
+
+### Added
+
+
+- Add removed accents and test
+- Add test show board
+
+
+## [0.2.8] 2023-10-28
+
+### Added
+
+
+- add new util.py
+- add method get word for different directions and test
+
+## [0.2.8] 2023-10-27
+
+### Changed
+
+
+- changed show board 
+- Moved calculate word value to util.py
+
+### Fixed
+
+- fixed premius cell values
+- fixed method validate word place board
+
+## [0.2.8] 2023-10-26
+
+### Added
+
+
+- Add more test for validate word
+- Add Comodin
+- Add test __rep__ cell
+
+### Fixed
+
+
+- Fixed method validate word
+- Fixed test models
+
+### Changed
+
+
+- implement has letter
+- Changed __rep__ cell
+- Changed show board
+
 ## [0.2.8] 2023-10-25
+
+### Added
+
+
+- Add method is board full and test
+
+### Modify
+
+
+- modify toggle cell and add your tests
 
 ### Fixed
 
 
 - Fixed method and test exchange tile in player
+- Fixing validate word
 
 ## [0.2.8] 2023-10-24
 
