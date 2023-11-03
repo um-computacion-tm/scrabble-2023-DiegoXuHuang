@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-11-03 Finish
+
+### Added
+
+
+- Add more method in Scrabble cli and test
+
+### Fixed
+
+
+- finish fixed board
 
 ## [0.2.8] 2023-11-02
 
