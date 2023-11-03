@@ -17,6 +17,3 @@ class Tile:
         self.letter = new_letter
     
 
-
-
- 

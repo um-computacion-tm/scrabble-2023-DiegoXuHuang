@@ -10,7 +10,7 @@ class NoCenterLetterException(Exception):
     pass
 
 class WordPlacementException(Exception):
-        pass
+    pass
 
 class Board:
     def __init__(self):
@@ -26,6 +26,13 @@ class Board:
         cell.multiplier = multiplier_value
 
 
+    def modify_letter(self, letter):
+        if self.util.is_word_letters(self.mletter):
+            self.mletter = [l for l in self.mletter if l != letter]
+        else:
+            self.mletter = ''.join(l for l in self.mletter if l != letter)
+
+
     def add_premium_cells(self):
         for coordinate in TRIPLE_WORD_SCORE:
             self.set_cell_multiplier(coordinate, "W", 3)
@@ -36,9 +43,12 @@ class Board:
         for coordinate in DOUBLE_LETTER_SCORE:
             self.set_cell_multiplier(coordinate, "L", 2)
 
+    def is_out_of_bounds(self, row, col):
+        return not (0 <= row < len(self.grid)) or not (0 <= col < len(self.grid[0]))
+
 
     def validate_word_inside_board(self, word, location, orientation):
-        word = [letter.upper() for letter in word] if isinstance(word, list) else word.upper()
+        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
         self.word = word
         self.orientation = orientation
         self.position_row, self.position_col = location
@@ -65,7 +75,6 @@ class Board:
         self.is_empty = self.grid[7][7].letter is None
 
 
-
     def validate_word_center(self, orientation):
         if (self.position_row, self.position_col) == (7, 7):
             return True
@@ -80,39 +89,29 @@ class Board:
 
         return False
     
-    
+
+
 
     def validate_word_placement_in_occupied_grid(self, orientation):
+        row, col = self.position_row, self.position_col
+
         for letter in self.word:
-            row, col = self.position_row, self.position_col
-
-            out_of_bounds = not (0 <= row < len(self.grid)) or not (0 <= col < len(self.grid[0]))
-            cell = self.grid[row][col]
-
-            if out_of_bounds or (cell.letter is not None and letter != cell.letter.letter):
+            if self.is_out_of_bounds(row, col):
                 return False
 
-            self.mletter = [l for l in self.mletter if l != letter] if self.util.is_word_letters(self.mletter) else ''.join(l for l in self.mletter if l != letter)
+            cell = self.grid[row][col]
+
+            if cell.letter is not None and letter != cell.letter.letter:
+                return False
+
+            self.modify_letter(letter)
 
             row, col = self.update_position(orientation)
-            self.position_row, self.position_col = row, col
 
         return True
-    
 
 
-    def validate_word_place_board(self, word, location, orientation):
-        
-        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
-        valid = self.validate_word_inside_board(word, location, orientation)
-        self.empty()
-        self.mletter = word
 
-        if valid:
-            return self.validate_word_center(orientation) if self.is_empty else self.validate_word_placement_in_occupied_grid(orientation)
-        return False
-
-    
     def show_board(self):
         board_str = "   |  " + "  |  ".join(str(item) for item in range(10)) + "  | " + "  | ".join(str(item) for item in range(10, 15)) + " |"
         board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n"
@@ -128,12 +127,19 @@ class Board:
 
 
 
-    
-
-
-
-
-
+    def validate_word_place_board(self, word, location, orientation):
         
+        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+        valid = self.validate_word_inside_board(word, location, orientation)
+        self.empty()
+        self.mletter = word
+
+        if valid:
+            return self.validate_word_center(orientation) if self.is_empty else self.validate_word_placement_in_occupied_grid(orientation)
+        return False
+
+
+
+
         
 

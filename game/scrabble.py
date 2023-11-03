@@ -7,12 +7,13 @@ from game.util import Util
 from operator import attrgetter
 import sys
 
-
-
-
 class InvalidPlaceWordException(Exception):
     pass
 class GameOverException(Exception):
+    pass
+class FinshiTurnException(Exception):
+    pass
+class InvalidWordException(Exception):
     pass
 class MissingLettersException(Exception):
     pass
@@ -66,17 +67,14 @@ class ScrabbleGame:
     def validate_word(self, word, location, orientation):
         # Comprueba si la palabra puede colocarse en el tablero
         if not self.board.validate_word_place_board (word, location, orientation):
-            # raise InvalidPlaceWordException("La palabra no puede ser colocada en esa posición. Asegúrate de que la ubicación y la orientación sean válidas y de que la palabra se ajuste correctamente en el tablero.")
             return False
     
         # Comprueba si la palabra está en el diccionario
         if not self.dictionary.has_word(word):
-            # raise InvalidWordException("Su palabra no existe en el diccionario")
             return False
     
         # Comprueba si el jugador tiene las letras necesarias para formar la palabra
         if not self.current_player.has_letters(self.board.mletter):
-            # raise MissingLettersException("No tienes las letras necesarias para formar esta palabra. Verifica tus letras disponibles antes de intentar jugar.")
             return False
 
         return True
@@ -94,7 +92,6 @@ class ScrabbleGame:
         if self.is_board_full() or (not self.bag_tiles.tiles and not self.current_player.tiles):
             self.end_game_directly()
             
-        # falta poner la opcion de termianr el juego direcemtanete mostrando el resultado final
             
 
     #test
@@ -105,15 +102,6 @@ class ScrabbleGame:
         sys.exit(0) 
 
 
-
-    
-            
-
-    
-    
-    # ending scrore
-    # show score
-    
 
     def has_wildcard(self):
         return any(tile.value == 0 for tile in self.current_player.tiles)
@@ -225,7 +213,7 @@ class ScrabbleGame:
             for position, (player, score) in enumerate(top_players, 1):
                 print(f"| {player:16} | {score:5} |")
             print("+------------------+-------+")
-            print(f"GANADOR --> {top_players[0][0]}")
+            
         
 
 
