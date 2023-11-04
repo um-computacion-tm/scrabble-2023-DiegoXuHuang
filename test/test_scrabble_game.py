@@ -14,20 +14,14 @@ class TestScrabbleGame(unittest.TestCase):
         )
         self.assertIsNotNone(scrabble_game.bag_tiles)
 
-    # def test_playing(self):
-    #     game = ScrabbleGame(players_count=2)
-    #     self.assertTrue(game.playing())
+   
 
     def test_clean_word_to_use(self):
         game = ScrabbleGame(2)
         word = 'Imaginación'
         self.assertEqual(game.clean_word_to_use(word), 'IMAGINACION')
 
-    # def test_show_amount_tiles_bag(self):
-    #     game = ScrabbleGame(2)
-    #     self.assertEqual(game.show_amount_tiles_bag(), 100)
-
-
+   
     def test_next_turn_when_player_is_not_the_first(self):
         scrabble_game = ScrabbleGame(players_count=3)
         scrabble_game.current_player = scrabble_game.players[0]
