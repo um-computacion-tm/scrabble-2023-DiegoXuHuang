@@ -60,23 +60,43 @@ class Util():
 
 
 
+    # def get_word_horizontal(self, row, col):
+    #     word = []
+    #     grid = self.board.grid
+    #     for c in range(col, -1, -1):
+    #         if grid[row][c].has_tile():
+    #             word.insert(0, grid[row][c])
+    #         else:
+    #             break
+    #     for c in range(col + 1, len(grid[row])):
+    #         if grid[row][c].has_tile():
+    #             word.append(grid[row][c])
+    #         else:
+    #             break
+
+    #     if len(word) < 2:
+    #         return False
+    #     return word
+    
     def get_word_horizontal(self, row, col):
         word = []
         grid = self.board.grid
-        for c in range(col, -1, -1):
-            if grid[row][c].has_tile():
-                word.insert(0, grid[row][c])
-            else:
-                break
-        for c in range(col + 1, len(grid[row])):
-            if grid[row][c].has_tile():
-                word.append(grid[row][c])
-            else:
-                break
+
+        c = col
+        while c >= 0 and grid[row][c].has_tile():
+            word.insert(0, grid[row][c])
+            c -= 1
+
+        c = col + 1
+
+        while c < len(grid[row]) and grid[row][c].has_tile():
+            word.append(grid[row][c])
+            c += 1
 
         if len(word) < 2:
             return False
         return word
+
     
 
 
