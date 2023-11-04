@@ -301,7 +301,7 @@ class ScrabbleCli:
                 if action == " ":
                     break
 
-                word = self.util.split_groups_in_string(action)
+                word = self.util.split_groups_in_string(action) 
                 location, orientation = self.get_location_and_orientation()
 
                 if self.is_valid_play(word, location, orientation):
