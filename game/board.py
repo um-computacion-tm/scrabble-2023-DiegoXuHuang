@@ -119,13 +119,36 @@ class Board:
         for i in range(len(board)):
             if i < 10:
                 board[i] = f"{i}  | {' | '.join(map(str, board[i]))} |"
-            # if i < 10:
-            #     board[i] = str(i) + "  | " + " | ".join(str(item) for item in board[i]) + " |"
             if i >= 10:
                 board[i] = str(i) + " | " + " | ".join(str(item) for item in board[i]) + " |"
         board_str += "\n   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|\n".join(board)
         board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
         print(board_str)
+
+  
+
+    # def show_board(self):
+        
+    #     green = "\033[32m"
+    #     red = "\033[31m"
+    #     reset = "\033[0m"
+
+    #     board_str = "   |  " + "  |  ".join(str(item) for item in range(10)) + "  | " + "  | ".join(str(item) for item in range(10, 15)) + " |"
+    #     board_str += f"\n   {green}_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _{reset}\n"
+
+    #     board = list(self.grid)
+    #     for i in range(len(board)):
+    #         if i < 10:
+    #             board[i] = f"{i}  | {' | '.join(map(str, board[i]))} |"
+    #         if i >= 10:
+    #             board[i] = str(i) + " | " + " | ".join(str(item) for item in board[i]) + " |"
+        
+    #     board_str += "\n".join(board)
+
+    #     board_str += f"\n   {red}_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _{reset}\n"
+
+    #     print(board_str)
+
 
 
 
