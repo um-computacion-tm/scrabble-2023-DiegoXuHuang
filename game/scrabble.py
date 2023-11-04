@@ -43,19 +43,6 @@ class ScrabbleGame:
         return word
 
 
-    # def show_amount_tiles_bag(self):
-    #     return len(self.bag_tiles.tiles)
-    
-    # def show_amount_tiles_bag(self):
-    #     num_tiles = len(self.bag_tiles.tiles)
-    #     print(f"Number of tiles in the bag: {num_tiles}")
-    #     return num_tiles
-
-
-    # def playing(self):
-    #     return True
-    
-
     def next_turn(self):
         if self.current_player is None:
             self.current_player = self.players[0]
@@ -106,15 +93,7 @@ class ScrabbleGame:
         sys.exit(0)
 
 
-    # def end_game(self):
-    #     if self.is_board_full() or (not self.bag_tiles.tiles and not self.current_player.tiles):
-    #         message = "El juego ha sido finalizado"
-    #         print(message)
-    #         self.show_results()
-    #         sys.exit(0)
- 
-
-
+   
 
     def has_wildcard(self):
         return any(tile.value == 0 for tile in self.current_player.tiles)

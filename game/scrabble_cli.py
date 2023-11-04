@@ -139,8 +139,6 @@ class ScrabbleCli:
                     self.showboard()
                 elif option == "5":
                     self.game.end_game_directly()
-                # elif option == "6":
-                #     self.game.show_amount_tiles_bag()
                     pass
             except FinshiTurnException:
                 self.display_turn_end_message()
@@ -153,10 +151,7 @@ class ScrabbleCli:
 
     def display_game_info(self):
 
-        # print('Al iniciar el juego la cantidad de fichas en total hay 100')
-        # self.game.show_amount_tiles_bag
-        # print("\n")
-
+        print("\n")
         self.show_tiles()
         print("\n")
 
