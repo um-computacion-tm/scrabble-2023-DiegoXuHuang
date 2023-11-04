@@ -118,7 +118,9 @@ class Board:
         board = list(self.grid)
         for i in range(len(board)):
             if i < 10:
-                board[i] = str(i) + "  | " + " | ".join(str(item) for item in board[i]) + " |"
+                board[i] = f"{i}  | {' | '.join(map(str, board[i]))} |"
+            # if i < 10:
+            #     board[i] = str(i) + "  | " + " | ".join(str(item) for item in board[i]) + " |"
             if i >= 10:
                 board[i] = str(i) + " | " + " | ".join(str(item) for item in board[i]) + " |"
         board_str += "\n   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|\n".join(board)
