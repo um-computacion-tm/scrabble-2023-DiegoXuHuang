@@ -126,32 +126,47 @@ class ScrabbleCli:
             print("║  6. Finalizar juego          ║")
             print("╚══════════════════════════════╝")
 
-            option = input("Ingrese un numero: ")
+            option = input("Ingrese un número: ")
 
             try:
-                if option == "0":
+                option = int(option) 
+
+                if option == 0:
                     self.handle_play_word()
-                elif option == "1":
+                elif option == 1:
                     self.display_scrabble_rules()
-                elif option == "2":
+                elif option == 2:
                     self.handle_tile_exchange()
-                elif option == "3":
+                elif option == 3:
                     self.end_current_turn()
-                elif option == "4":
+                elif option == 4:
                     self.showboard()
-                elif option == "5":
+                elif option == 5:
                     self.wildcard()
-                elif option == "6":
+                elif option == 6:
                     self.game.end_game_directly()
-                    pass
+                    break
+                else:
+                    error_message = "\n"\
+                                    "╔══════════════════════════════════════════════╗\n" \
+                                    "║  ❌ Número no válido. Por favor, ingrese un  ║\n" \
+                                    "║  número válido del menú.                     ║\n" \
+                                    "╚══════════════════════════════════════════════╝"
+                    raise ValueError(error_message)
+            except ValueError as e:
+                print(e)
             except FinshiTurnException:
                 self.display_turn_end_message()
                 break
 
+
+
+
+
     def showboard(self):
-        print("\n" + "=" * 95)  # Horizontal separator line
+        print("\n" + "=" * 95)  
         self.game.board.show_board()
-        print("=" * 95 + "\n")  # Horizontal separator line
+        print("=" * 95 + "\n") 
 
     def display_game_info(self):
 
@@ -164,7 +179,6 @@ class ScrabbleCli:
         print("\n")
 
     def handle_play_word(self):
-        #self.wildcard()
         self.input_play_word()
 
 
@@ -196,6 +210,7 @@ class ScrabbleCli:
             print("╚═════════════╝")
         else:
             print("El jugador no tiene Fichas.")
+
 
 
     
@@ -320,4 +335,11 @@ class ScrabbleCli:
                 else:
                     raise InvalidWordException
             except InvalidWordException:
-                print("No existe ")
+                print("\n")
+                print(" ⚠️  ACORDATE QUE SI ESTAS EN EL PRIMER MOVIMIENTO TENES QUE PONERLO EN EL CENTRO ")
+                print("-----------------------------------------------------------------------------------")
+                print("            ❌ LA PALABRA QUE INGRESASTE NO EXISTE EN EL MUNDO")
+                print("\n")
+
+ 
+    
