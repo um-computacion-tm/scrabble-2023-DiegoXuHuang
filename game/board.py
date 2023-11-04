@@ -129,7 +129,12 @@ class Board:
 
     def validate_word_place_board(self, word, location, orientation):
         
-        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+        # word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+        if self.util.is_word_list(word):
+            word = [letter.upper() for letter in word]
+        else:
+            word = word.upper()
+
         valid = self.validate_word_inside_board(word, location, orientation)
         self.empty()
         self.mletter = word
