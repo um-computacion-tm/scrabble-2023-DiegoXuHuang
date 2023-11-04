@@ -29,18 +29,35 @@ class Util():
     #     return isinstance(item, str)
 
 
+    # def split_groups_in_string(self, input_string):
+    #     word = []
+    #     i = 0
+    #     while i < len(input_string):
+    #         if i < len(input_string) - 1 and (input_string[i] == 'c' and input_string[i + 1] == 'h' or input_string[i] == 'l' and input_string[i + 1] == 'l' or input_string[i] == 'r' and input_string[i + 1] == 'r'):
+    #             word.append(input_string[i:i+2])
+    #             i += 2
+    #         else:
+    #             word.append(input_string[i])
+    #             i += 1
+    #     return word
+
+
     def split_groups_in_string(self, input_string):
         word = []
         i = 0
         while i < len(input_string):
-            if i < len(input_string) - 1 and (input_string[i] == 'c' and input_string[i + 1] == 'h' or input_string[i] == 'l' and input_string[i + 1] == 'l' or input_string[i] == 'r' and input_string[i + 1] == 'r'):
+            if i < len(input_string) - 1 and input_string[i:i+2] in ['ch', 'll', 'rr']:
                 word.append(input_string[i:i+2])
                 i += 2
             else:
                 word.append(input_string[i])
                 i += 1
         return word
-    
+
+
+  
+   
+
 
 
     def get_word_horizontal(self, row, col):
