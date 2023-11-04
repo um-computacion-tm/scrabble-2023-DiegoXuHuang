@@ -47,8 +47,8 @@ class ScrabbleGame:
         return len(self.bag_tiles.tiles)
 
 
-    def playing(self):
-        return True
+    # def playing(self):
+    #     return True
     
 
     def next_turn(self):
@@ -87,19 +87,27 @@ class ScrabbleGame:
     
 
 
-    def end_game(self):
-
-        if self.is_board_full() or (not self.bag_tiles.tiles and not self.current_player.tiles):
-            self.end_game_directly()
+    # def end_game(self):
+    #     if self.is_board_full() or (not self.bag_tiles.tiles and not self.current_player.tiles):
+    #         self.end_game_directly()
             
             
 
-    #test
-    def end_game_directly(self, message="El juego ha sido finalizado"):
-        print(message)
+    
+    # def end_game_directly(self, message="El juego ha sido finalizado"):
+    #     print(message)
         
-        self.show_results()
-        sys.exit(0) 
+    #     self.show_results()
+    #     sys.exit(0)
+
+
+    def end_game(self):
+        if self.is_board_full() or (not self.bag_tiles.tiles and not self.current_player.tiles):
+            message = "El juego ha sido finalizado"
+            print(message)
+            self.show_results()
+            sys.exit(0)
+ 
 
 
 
