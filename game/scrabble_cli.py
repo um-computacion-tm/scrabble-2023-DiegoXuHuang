@@ -254,7 +254,7 @@ class ScrabbleCli:
         if not wildcard:
             print("\n")
             print("╔══════════════════════════╗")
-            print("║   No tienes comodín      ║")
+            print("║   ⚠️ No tienes comodín    ║")
             print("╚══════════════════════════╝")
         
         player_tiles = self.game.current_player.tiles
