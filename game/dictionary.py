@@ -9,7 +9,7 @@ class Dictionary:
         with open(file_path, 'r', encoding='utf-8') as file:
             return set(word.strip() for word in file)
 
-    def has_word(self, word):
+    def check_word(self, word):
         if isinstance(word, list):
             word = "".join(word).lower()
         else:

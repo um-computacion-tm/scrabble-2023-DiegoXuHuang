@@ -7,6 +7,7 @@ class ScrabbleCli:
         self.game = ScrabbleGame(players)  
         self.util = Util()
 
+
     def start_game(self):
         players = self.players_to_play()
         scrabble_game = ScrabbleCli(players)
@@ -121,7 +122,8 @@ class ScrabbleCli:
             print("║  2. Intercambiar Fichas      ║")
             print("║  3. Pasar Turno              ║")
             print("║  4. Mostrar Tablero          ║")
-            print("║  5. Finalizar juego          ║")
+            print("║  5. Usar comodin             ║")
+            print("║  6. Finalizar juego          ║")
             print("╚══════════════════════════════╝")
 
             option = input("Ingrese un numero: ")
@@ -138,6 +140,8 @@ class ScrabbleCli:
                 elif option == "4":
                     self.showboard()
                 elif option == "5":
+                    self.wildcard()
+                elif option == "6":
                     self.game.end_game_directly()
                     pass
             except FinshiTurnException:
@@ -160,7 +164,7 @@ class ScrabbleCli:
         print("\n")
 
     def handle_play_word(self):
-        self.wildcard()
+        #self.wildcard()
         self.input_play_word()
 
 
@@ -228,18 +232,22 @@ class ScrabbleCli:
             except ValueError:
                 print("Entrada no válida. Ingresa un número válido.")
 
-    
+
     def wildcard(self):
         wildcard = self.game.has_wildcard()
         
         if not wildcard:
-            return  
+            print("\n")
+            print("╔══════════════════════════╗")
+            print("║   No tienes comodín      ║")
+            print("╚══════════════════════════╝")
         
         player_tiles = self.game.current_player.tiles
         wildcard_tile = next((tile for tile in player_tiles if tile.value == 0), None)
         
         if wildcard_tile:
             self.set_letter_for_wildcard(wildcard_tile)
+
 
 
     def set_letter_for_wildcard(self, tile):

@@ -61,7 +61,7 @@ class TestCli(unittest.TestCase):
 
 
     @patch('builtins.print')
-    @patch('builtins.input', side_effect=["6","1","3"])
+    @patch('builtins.input', side_effect=["7","1","3"])
     def test_show_menu_show_board(self, patchInput, patchPrint):
         
         scrabble_cli = ScrabbleCli(2)

@@ -7,10 +7,10 @@ class TestDictionary(unittest.TestCase):
       
 
     def test_word_valid(self):
-        self.assertTrue(self.dictionary.has_word('hola'))
+        self.assertTrue(self.dictionary.check_word('hola'))
 
     def test_word_not_valid(self):
-        self.assertFalse(self.dictionary.has_word('awe'))
+        self.assertFalse(self.dictionary.check_word('awe'))
 
 
     def test_remove_accents(self):

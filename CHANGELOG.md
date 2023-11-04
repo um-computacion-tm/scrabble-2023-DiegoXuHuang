@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file
 
-## [0.2.8] 2023-11-03 Finish
+## [0.2.8] 2023-11-04
+
+### Added
+
+
+- Add option comondin in show menu
+
+## [0.2.8] 2023-11-03 
 
 ### try fixing codeclimate
 

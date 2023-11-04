@@ -62,7 +62,7 @@ class ScrabbleGame:
             return False
     
         # Comprueba si la palabra está en el diccionario
-        if not self.dictionary.has_word(word):
+        if not self.dictionary.check_word(word):
             return False
     
         # Comprueba si el jugador tiene las letras necesarias para formar la palabra
