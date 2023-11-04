@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file
 
 
 - fixing 1
+- fixing 2
 
 ### Added
 
