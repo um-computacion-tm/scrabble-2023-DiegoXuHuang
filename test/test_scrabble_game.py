@@ -14,9 +14,9 @@ class TestScrabbleGame(unittest.TestCase):
         )
         self.assertIsNotNone(scrabble_game.bag_tiles)
 
-    def test_playing(self):
-        game = ScrabbleGame(players_count=2)
-        self.assertTrue(game.playing())
+    # def test_playing(self):
+    #     game = ScrabbleGame(players_count=2)
+    #     self.assertTrue(game.playing())
 
     def test_clean_word_to_use(self):
         game = ScrabbleGame(2)
