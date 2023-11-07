@@ -1,7 +1,6 @@
 
 from game.tile import Tile
 from game.models import BagTiles
-from game.models import BagTiles
 from game.util import Util
 
 
@@ -14,12 +13,12 @@ class Player:
         self.tiles = []
         self.score = 0  
         self.name = ""
-        #self.current_player = self
+        self.current_player = self
         self.bag_tiles = BagTiles()
         self.util = Util()
+        
 
 
-     
     def refill(self):
         max_tiles_to_take = 7 - len(self.tiles)
         if max_tiles_to_take > 0:
@@ -27,17 +26,11 @@ class Player:
             self.tiles.extend(tiles_to_take)
 
 
-    def add_tile(self, tile:Tile):
-        self.tiles.append(tile)
-        
-    def set_name(self, name):
-        self.name = name
-    
-    def get_name(self):
-        return self.name
 
-    def show_tiles(self):
-        return self.tiles
+    def add_tile(self, tile: Tile):
+        self.tiles.insert(0, tile)
+
+        
 
     def take_tiles(self, bag: BagTiles, amount):
         taken_tiles = bag.take(amount)
@@ -54,7 +47,6 @@ class Player:
     def has_letters(self, letter_set):
         letter_inventory = {tile.letter: 0 for tile in self.tiles}
 
-        
         if self.util.is_word_set(str):
             letter_set = letter_set.upper()
        
@@ -89,6 +81,10 @@ class Player:
             if i.letter == tile.letter:
                 self.tiles.remove(i)
                 break
+
+    
+    
+    
 
     
 

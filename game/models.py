@@ -23,6 +23,7 @@ class BagTiles:
     def shuffle_bag(self):
         random.shuffle(self.tiles)
 
+
     def take(self, count):
         count = min(count, len(self.tiles))
         taken_tiles = self.tiles[-count:]

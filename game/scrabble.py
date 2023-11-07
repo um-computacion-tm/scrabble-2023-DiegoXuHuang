@@ -17,6 +17,8 @@ class InvalidWordException(Exception):
     pass
 class MissingLettersException(Exception):
     pass
+class NoWildcardException(Exception):
+    pass
 
 
     
@@ -36,11 +38,10 @@ class ScrabbleGame:
         
 
 
-    # cli
+    
     def clean_word_to_use(self, word):
-        word = self.dictionary.remove_accents(word)
-        word = word.strip().upper()
-        return word
+        return self.dictionary.remove_accents(word).strip().upper()
+
 
 
     def next_turn(self):
@@ -57,6 +58,7 @@ class ScrabbleGame:
 
     # TESTING
     def validate_word(self, word, location, orientation):
+        
         # Comprueba si la palabra puede colocarse en el tablero
         if not self.board.validate_word_place_board (word, location, orientation):
             return False
@@ -76,7 +78,7 @@ class ScrabbleGame:
     def is_board_full(self):
         cell_has_letter = [cell.letter is not None for row in self.board.grid for cell in row]
         return all(cell_has_letter)
-    
+
 
 
     def end_game(self):
@@ -124,9 +126,6 @@ class ScrabbleGame:
         self.board.grid[row][col].add_letter(tile)
 
 
-    def remove_tile_from_player(self, tile):
-        self.current_player.remove_tile(tile)
-
 
     def find_selected_tile(self, letter):
         for tile in self.current_player.tiles:
@@ -135,11 +134,14 @@ class ScrabbleGame:
         return None
     
 
+
     def place_letter_on_board(self, letter, row, col):
         selected_tile = self.find_selected_tile(letter)
+        
         if selected_tile:
             self.add_letter_to_board(selected_tile, row, col)
-            self.remove_tile_from_player(selected_tile)
+            self.current_player.remove_tile(selected_tile)
+
 
 
 
@@ -205,8 +207,7 @@ class ScrabbleGame:
             for position, (player, score) in enumerate(top_players, 1):
                 print(f"| {player:16} | {score:5} |")
             print("+------------------+-------+")
-            
-        
+
 
 
     

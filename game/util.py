@@ -10,8 +10,6 @@ class Util():
         return row + row_update, col + col_update
     
 
-   
-
 
     def is_word_list(self, word):
         return isinstance(word, list)
@@ -29,18 +27,6 @@ class Util():
     #     return isinstance(item, str)
 
 
-    # def split_groups_in_string(self, input_string):
-    #     word = []
-    #     i = 0
-    #     while i < len(input_string):
-    #         if i < len(input_string) - 1 and (input_string[i] == 'c' and input_string[i + 1] == 'h' or input_string[i] == 'l' and input_string[i + 1] == 'l' or input_string[i] == 'r' and input_string[i + 1] == 'r'):
-    #             word.append(input_string[i:i+2])
-    #             i += 2
-    #         else:
-    #             word.append(input_string[i])
-    #             i += 1
-    #     return word
-
 
     def split_groups_in_string(self, input_string):
         word = []
@@ -55,29 +41,8 @@ class Util():
         return word
 
 
-  
-   
 
 
-
-    # def get_word_horizontal(self, row, col):
-    #     word = []
-    #     grid = self.board.grid
-    #     for c in range(col, -1, -1):
-    #         if grid[row][c].has_tile():
-    #             word.insert(0, grid[row][c])
-    #         else:
-    #             break
-    #     for c in range(col + 1, len(grid[row])):
-    #         if grid[row][c].has_tile():
-    #             word.append(grid[row][c])
-    #         else:
-    #             break
-
-    #     if len(word) < 2:
-    #         return False
-    #     return word
-    
     def get_word_horizontal(self, row, col):
         word = []
         grid = self.board.grid

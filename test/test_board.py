@@ -155,6 +155,18 @@ class TestBoard(unittest.TestCase):
         assert word_is_valid == False
 
 
+    def test_validate_word_placement(self):
+        game = Board()
+        word = "hola"
+        location = (3, 3) 
+        orientation = 'H' 
+        result = game.validate_word_placement(word, location, orientation)
+        self.assertFalse(result)  
+
+
+
+        
+
     def test_show_board(self):
         game_instance = Board()  
         expected_output = """
@@ -282,6 +294,9 @@ class TestBoard(unittest.TestCase):
         result = util.get_word_vertical(row=10, col=7)
         self.assertFalse(result)
    
+
+   
+
 
 if __name__ == '__main__':
     unittest.main()
