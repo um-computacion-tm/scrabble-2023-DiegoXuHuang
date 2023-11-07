@@ -20,19 +20,18 @@ class BagTiles:
         random.shuffle(self.tiles)
 
 
-    def shuffle_bag(self):
-        random.shuffle(self.tiles)
-
-
     def take(self, count):
         count = min(count, len(self.tiles))
         taken_tiles = self.tiles[-count:]
         self.tiles = self.tiles[:-count]
         return taken_tiles
 
-
     def put(self, tiles):
         self.tiles.extend(tiles)
+
+
+    def shuffle_bag(self):
+        self.tiles = random.sample(self.tiles, len(self.tiles))
 
 
 

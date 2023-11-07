@@ -109,64 +109,6 @@ class ScrabbleCli:
     
 
 
-    # def show_menu(self):
-    #     self.game.current_player.refill()
-
-    #     while True:
-    #         self.display_game_info()
-
-    #         print("Opciones del Menú:")
-    #         print("╔══════════════════════════════╗")
-    #         print("║  0. Colocar Palabra          ║")
-    #         print("║  1. Reglas                   ║")
-    #         print("║  2. Intercambiar Fichas      ║")
-    #         print("║  3. Pasar Turno              ║")
-    #         print("║  4. Mostrar Tablero          ║")
-    #         print("║  5. Usar comodin             ║")
-    #         print("║  6. Finalizar juego          ║")
-    #         print("╚══════════════════════════════╝")
-
-    #         option = input("Ingrese un número: ")
-
-    #         try:
-    #             option = int(option) 
-
-    #             if option == 0:
-    #                 self.input_play_word()
-    #             elif option == 1:
-    #                 self.display_scrabble_rules()
-    #             elif option == 2:
-    #                 self.handle_tile_exchange()
-    #             elif option == 3:
-    #                 self.end_current_turn()
-    #             elif option == 4:
-    #                 self.showboard()
-    #             elif option == 5:
-    #                 self.wildcard()
-    #             elif option == 6:
-    #                 self.game.end_game_directly()
-    #                 break
-    #             else:
-    #                 error_message = "\n"\
-    #                                 "╔══════════════════════════════════════════════╗\n" \
-    #                                 "║  ❌ Número no válido. Por favor, ingrese un  ║\n" \
-    #                                 "║  número válido del menú.                     ║\n" \
-    #                                 "╚══════════════════════════════════════════════╝"
-    #                 raise ValueError(error_message)
-    #         except ValueError as e:
-    #             print(e)
-    #         except FinshiTurnException:
-    #             self.display_turn_end_message()
-    #             break
-
-
-
-
-
-    # def showboard(self):
-    #     print("\n" + "=" * 95)  
-    #     self.game.board.show_board()
-    #     print("=" * 95 + "\n") 
 
 
     def show_menu(self):
@@ -302,26 +244,6 @@ class ScrabbleCli:
                 print("Entrada no válida. Ingresa un número válido.")
 
 
-    # hay que juntarlos al set letter_for_wildcard
-    # def wildcard(self):
-    #     wildcard = self.game.has_wildcard()
-        
-    #     if not wildcard:
-    #         print("\n")
-    #         print("╔══════════════════════════╗")
-    #         print("║   ⚠️ No tienes comodín 🃏 ║")
-    #         print("╚══════════════════════════╝")
-        
-    #     player_tiles = self.game.current_player.tiles
-    #     wildcard_tile = next((tile for tile in player_tiles if tile.value == 0), None)
-        
-    #     if wildcard_tile:
-    #         self.set_letter_for_wildcard(wildcard_tile)
-            
-    
-    # def set_letter_for_wildcard(self, tile):
-    #     letter_for_wild = input("Escribi una LETRA que quieras (comodin):").strip().upper()
-    #     tile.set_letter(letter_for_wild)
 
     def wildcard(self):
         wildcard = self.game.has_wildcard()
@@ -353,25 +275,19 @@ class ScrabbleCli:
                 print("Entrada no válida. Por favor, ingrese un número válido.")
 
     
-    # def get_row(self):
-    #     return self.get_input_within_range("Ingrese el número de fila [0-14]: ", 0, 14)
-
-    # def get_col(self):
-    #     return self.get_input_within_range("Ingrese el número de columna [0-14]: ", 0, 14)
-
-    def orientation(self):
-        while True:
-            orientation = input("Pone una posicion (H/V): ").strip().upper()
-            if orientation == "H" or orientation == "V":
-                return orientation
-            else:
-                print("Orientación no válida. Por favor, ingresa 'H' para horizontal o 'V' para vertical")
-
 
     def get_location_and_orientation(self):
+        def orientation():
+            while True:
+                orientation = input("Pone una posicion (H/V): ").strip().upper()
+                if orientation == "H" or orientation == "V":
+                    return orientation
+                else:
+                    print("Orientación no válida. Por favor, ingresa 'H' para horizontal o 'V' para vertical")
+
         row = self.get_input_within_range("Ingrese el número de fila [0-14]: ", 0, 14)
         col = self.get_input_within_range("Ingrese el número de columna [0-14]: ", 0, 14)
-        orientation = self.orientation()
+        orientation = orientation()
         return (row, col), orientation
 
 
