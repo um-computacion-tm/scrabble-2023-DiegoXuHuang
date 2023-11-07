@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file
 
+## [0.2.8] 2023-11-05
+
+### Added
+
+
+- Add color in board
+- finish fix codeclimate
+
 ## [0.2.8] 2023-11-04
 
 ### try

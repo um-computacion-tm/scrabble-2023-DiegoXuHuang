@@ -225,9 +225,7 @@ class ScrabbleGame:
                 self.place_letter_on_board(letter, row, col)
                 row, col = self.util.update_coordinates(orientation, row, col)
 
-    
 
-    
     def validate_and_score_word(self, word, location, orientation):
         word_cells_groups = self.iterate_word_letters(word, location, orientation)
         total_score = 0
