@@ -70,13 +70,10 @@ class ScrabbleCli:
     │    para formar palabras en el tablero.  │
     │ 6. Las palabras puede conectarse a      │
     │    otras palabras en el tablero.        │
-    │ 7. Los jugadores pueden usar            │
-    │    diccionarios o listas de palabras    │
-    │    permitidas.                          │
-    │ 8. El juego termina cuando se agotan    │
+    │ 7. El juego termina cuando se agotan    │
     │    las fichas o cuando un jugador no    │
     │    puede formar palabras.               │
-    │ 9. El ganador es el jugador con la      │
+    │ 8. El ganador es el jugador con la      │
     │    puntuación más alta al final del     │
     │    juego.                               │
     │                                         │
