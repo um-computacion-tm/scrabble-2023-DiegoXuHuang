@@ -33,7 +33,7 @@ In this introduction, we'll explore the basic rules of Scrabble, how words are s
 1. Install Docker
 2. Clone the repository: 
 - git clone https://github.com/um-computacion-tm/scrabble-2023-DiegoXuHuang.git
-3. Go to your directory
+3. Navigate to the repository directory: cd/.../scrabble-2023-DiegoXuHuang
 4. docker build -t [nombre de la imagen] .
 5. docker run -it [nombre de la imagen]
 
