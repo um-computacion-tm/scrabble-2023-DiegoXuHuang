@@ -164,8 +164,21 @@ class TestBoard(unittest.TestCase):
         self.assertFalse(result)  
 
 
+    def test_is_adjacent_to_tile_adjacent(self):
+      
+        scrabble = Board()
 
-        
+        scrabble.grid[7][7].letter = 'M'
+        scrabble.grid[7][8].letter = 'A'
+        scrabble.grid[7][9].letter = 'S'
+        scrabble.grid[7][10].letter = 'A'
+
+        self.assertTrue(scrabble.is_adjacent_to_tile(6, 7))  # Arriba
+        self.assertTrue(scrabble.is_adjacent_to_tile(8, 7))  # Abajo
+        self.assertTrue(scrabble.is_adjacent_to_tile(7, 6))  # Izquierda
+        self.assertTrue(scrabble.is_adjacent_to_tile(7, 8))  # Derecha
+
+
 
     def test_show_board(self):
         game_instance = Board()  
@@ -293,8 +306,11 @@ class TestBoard(unittest.TestCase):
 
         result = util.get_word_vertical(row=10, col=7)
         self.assertFalse(result)
-   
 
+
+    
+
+   
    
 
 
