@@ -49,39 +49,7 @@ class Cell:
 
 
     def format_special_letter(self):
-        if self.letter is not None and self.letter.letter in ("CH", "RR", "LL"):
-            return f"{self.letter.letter} "
-        return f" {self.letter.letter} " if self.letter is not None else ""
-    
+        letter = self.letter.letter if self.letter is not None else ""
+        return f"{letter} " if letter in ("CH", "RR", "LL") else f" {letter} "
 
     
-   
-
-
-
-            
-    
-
-
-
-
-
-
-
-  
-    
-   
-    
-
-
-
-
- 
-
-
-
-    
-
-
-    
-

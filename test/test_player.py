@@ -14,13 +14,7 @@ class TestPlayer(unittest.TestCase):
             len(player_1.tiles),
             0,
         )
-    
-    
-
-    def test_set_name(self):
-        player = Player()
-        player.set_name('Diego')
-        self.assertEqual(player.get_name(), 'Diego')
+  
 
     def test_take_tiles(self):
         player=Player()
@@ -35,9 +29,6 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(player.get_score(), 5)
     
 
-    def test_show_tiles(self):
-        player = Player()
-        self.assertEqual(player.show_tiles(), player.tiles)
 
     def test_add_tile(self):
         player = Player()

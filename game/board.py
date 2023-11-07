@@ -1,5 +1,7 @@
 from game.cell import Cell
 from game.util import Util
+from game.dictionary import Dictionary
+
 
 TRIPLE_WORD_SCORE = ((0,0),(7,0),(14,0),(0,7),(14,7),(0,14),(7,14),(14,14))
 DOUBLE_WORD_SCORE = ((1,1),(2,2),(3,3),(4,4),(10,10),(11,11),(12,12),(13,13),(1,13),(2,12),(3,11),(4,10),(7,7),(13,1),(12,2),(11,3),(10,4))
@@ -18,6 +20,18 @@ class Board:
         self.add_premium_cells()
         self.is_empty = None
         self.util = Util()
+        self.dict = Dictionary
+
+
+
+    def is_out_of_bounds(self, row, col):
+        return not (0 <= row < len(self.grid)) or not (0 <= col < len(self.grid[0]))
+
+
+
+    def transform_word_to_upper(self, word):
+        return [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+
 
 
     def set_cell_multiplier(self, coordinate, multiplier_type, multiplier_value):
@@ -26,11 +40,13 @@ class Board:
         cell.multiplier = multiplier_value
 
 
+
     def modify_letter(self, letter):
         if self.util.is_word_letters(self.mletter):
             self.mletter = [l for l in self.mletter if l != letter]
         else:
             self.mletter = ''.join(l for l in self.mletter if l != letter)
+
 
 
     def add_premium_cells(self):
@@ -43,12 +59,12 @@ class Board:
         for coordinate in DOUBLE_LETTER_SCORE:
             self.set_cell_multiplier(coordinate, "L", 2)
 
-    def is_out_of_bounds(self, row, col):
-        return not (0 <= row < len(self.grid)) or not (0 <= col < len(self.grid[0]))
+    
 
 
     def validate_word_inside_board(self, word, location, orientation):
-        word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
+        word = self.transform_word_to_upper(word)
+        
         self.word = word
         self.orientation = orientation
         self.position_row, self.position_col = location
@@ -58,7 +74,8 @@ class Board:
         elif orientation == 'V':
             return len(word) <= 15 - self.position_row
         else:
-            return False  
+            return False
+
 
 
     def update_position(self, orientation):
@@ -89,6 +106,35 @@ class Board:
 
         return False
     
+
+
+    def is_adjacent_to_tile(self, row, col):
+        for dr in [-1, 0, 1]:
+            for dc in [-1, 0, 1]:
+                if dr == 0 and dc == 0:
+                    continue 
+                r, c = row + dr, col + dc
+                if 0 <= r < 15 and 0 <= c < 15 and self.grid[r][c].letter is not None:
+                    return True
+        return False
+
+
+
+    def validate_word_placement(self, word, location, orientation):
+        
+        if not self.validate_word_place_board(word, location, orientation):
+            return False
+
+        if orientation == 'H':
+            for i in range(len(word)):
+                if self.is_adjacent_to_tile(self.position_row, self.position_col + i):
+                    return True
+        elif orientation == 'V':
+            for i in range(len(word)):
+                if self.is_adjacent_to_tile(self.position_row + i, self.position_col):
+                    return True
+
+        return False
 
 
 
@@ -124,42 +170,14 @@ class Board:
         board_str += "\n   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|\n".join(board)
         board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
         print(board_str)
-
-  
-
-    # def show_board(self):
-        
-    #     green = "\033[32m"
-    #     red = "\033[31m"
-    #     reset = "\033[0m"
-
-    #     board_str = "   |  " + "  |  ".join(str(item) for item in range(10)) + "  | " + "  | ".join(str(item) for item in range(10, 15)) + " |"
-    #     board_str += f"\n   {green}_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _{reset}\n"
-
-    #     board = list(self.grid)
-    #     for i in range(len(board)):
-    #         if i < 10:
-    #             board[i] = f"{i}  | {' | '.join(map(str, board[i]))} |"
-    #         if i >= 10:
-    #             board[i] = str(i) + " | " + " | ".join(str(item) for item in board[i]) + " |"
-        
-    #     board_str += "\n".join(board)
-
-    #     board_str += f"\n   {red}_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _{reset}\n"
-
-    #     print(board_str)
-
+    
 
 
 
     def validate_word_place_board(self, word, location, orientation):
         
-        # word = [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
-        if self.util.is_word_list(word):
-            word = [letter.upper() for letter in word]
-        else:
-            word = word.upper()
-
+        word = self.transform_word_to_upper(word)
+    
         valid = self.validate_word_inside_board(word, location, orientation)
         self.empty()
         self.mletter = word

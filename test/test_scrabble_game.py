@@ -2,6 +2,8 @@ import unittest
 from game.scrabble import ScrabbleGame
 from game.tile import Tile
 from game.util import Util
+from game.player import Player
+
 
 
 class TestScrabbleGame(unittest.TestCase):
@@ -371,6 +373,18 @@ class TestScrabbleGame(unittest.TestCase):
         self.assertEqual(scoreboard, [("Diego", 30), ("Facundo", 8), ("Florencia", 6)])
 
 
+    def test_validate_and_score_word_direction(self):
+        scrabble_game = ScrabbleGame(1)
+        
+        word = "casas"
+        location = (11, 3)
+        orientation = "H"
+        
+        result = scrabble_game.validate_and_score_word(word, location, orientation)
+        
+        self.assertTrue(result)
+
+
     def test_validate_and_score_word(self):
         scrabble_game = ScrabbleGame(1)
         scrabble_game.board.grid[7][7].add_letter(Tile('G', 1))
@@ -387,6 +401,67 @@ class TestScrabbleGame(unittest.TestCase):
         scrabble_game.calculator(word, location, orientation)
         scrabble_game.validate_and_score_word(word, location, orientation)
         self.assertEqual(scrabble_game.current_player.score, 8)
+
+
+
+    def test_validate_and_score_word_direction(self):
+        scrabble_game = ScrabbleGame(1)
+        scrabble_game.board.grid[7][7].add_letter(Tile('M', 1))
+        scrabble_game.board.grid[8][7].add_letter(Tile('A', 1))
+        scrabble_game.board.grid[9][7].add_letter(Tile('M', 1))
+        scrabble_game.board.grid[10][7].add_letter(Tile('A', 1))
+        scrabble_game.board.grid[12][7].add_letter(Tile('M', 1))
+        scrabble_game.board.grid[13][7].add_letter(Tile('A', 1))
+        for x in range(7, 11):
+            scrabble_game.board.grid[x][7].active = False
+
+        scrabble_game.current_player = scrabble_game.players[0]
+        scrabble_game.current_player.tiles = [Tile('C', 1), Tile('A', 1), Tile('S', 1), Tile('A', 1),Tile('A', 1)]
+
+        word = "casaa"
+        location = (11, 3)
+        orientation = "H"
+
+        result = scrabble_game.validate_and_score_word(word, location, orientation)
+
+        self.assertFalse(result)
+
+        '''
+   |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  | 11  | 12  | 13  | 14 | 
+   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+0  | TWS |     |     | DLS |     |     |     | TWS |     |     |     | DLS |     |     | TWS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+1  |     | DWS |     |     |     | TLS |     |     |     | TLS |     |     |     | DWS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+2  |     |     | DWS |     |     |     | DLS |     | DLS |     |     |     | DWS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+3  | DLS |     |     | DWS |     |     |     | DLS |     |     |     | DWS |     |     | DLS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+4  |     |     |     |     | DWS |     |     |     |     |     |  M  |     |     |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+5  |     | TLS |     |     |     | TLS |     |     |     | TLS |  A  |     |     | TLS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+6  |     |     | DLS |     |     |     | DLS |     | DLS |     |  L  |     | DLS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+7  | TWS |     |     | DLS |     |     |     |  C  |  A  |  S  |  A  | DLS |     |     | TWS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+8  |     |     | DLS |     |     |     | DLS |     | DLS |     |     |     | DLS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+9  |     | TLS |     |     |     | TLS |     |     |     | TLS |     |     |     | TLS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+10 |     |     |     |     | DWS |     |     |     |     |     | DWS |     |     |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+11 | DLS |     |     | c   |  a  |  s  |  a  |  s  |     |     |     | DWS |     |     | DLS |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+12 |     |     | DWS |     |     |     | DLS |     | DLS |     |     |     | DWS |     |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+13 |     | DWS |     |     |     | TLS |     |     |     | TLS |     |     |     | DWS |     |
+   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+14 | TWS |     |     | DLS |     |     |     | TWS |     |     |     | DLS |     |     | TWS |
+   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+
+   '''
 
 
 
