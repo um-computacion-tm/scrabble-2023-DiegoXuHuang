@@ -161,8 +161,8 @@ class ScrabbleGame:
                 word_cells = self.util.get_word_horizontal(row, col)
             elif orientation == "H":
                 word_cells = self.util.get_word_vertical(row, col)
-            else:
-                raise ValueError("La orientación debe ser 'V' (vertical) o 'H' (horizontal)")
+            # else:
+            #     raise ValueError("La orientación debe ser 'V' (vertical) o 'H' (horizontal)")
 
             if word_cells is not False:
                 word_cells_groups.append(word_cells)
