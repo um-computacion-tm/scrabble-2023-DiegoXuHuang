@@ -21,6 +21,22 @@ class Board:
         self.is_empty = None
         self.util = Util()
         self.dict = Dictionary
+        
+
+    def update_position(self, orientation):
+        
+        orientation_mapping = {
+            "H": (0, 1),  
+            "V": (1, 0),  
+        }
+
+        
+        if orientation in orientation_mapping:
+            row_change, col_change = orientation_mapping[orientation]
+            self.position_row += row_change
+            self.position_col += col_change
+
+        return self.position_row, self.position_col
 
 
 
@@ -78,14 +94,7 @@ class Board:
 
 
 
-    def update_position(self, orientation):
-        if orientation == "H":
-            self.position_col += 1
-        elif orientation == "V":
-            self.position_row += 1
 
-        return self.position_row, self.position_col
-    
 
     def empty(self):
         # Verifica si el tablero está vacío
@@ -173,7 +182,6 @@ class Board:
     
 
 
-
     def validate_word_place_board(self, word, location, orientation):
         
         word = self.transform_word_to_upper(word)
@@ -185,7 +193,6 @@ class Board:
         if valid:
             return self.validate_word_center(orientation) if self.is_empty else self.validate_word_placement_in_occupied_grid(orientation)
         return False
-
 
 
 
