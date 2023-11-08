@@ -160,7 +160,7 @@ class Board:
                 return False
 
             self.modify_letter(letter)
-
+            
             row, col = self.update_position(orientation)
 
         return True
