@@ -3,6 +3,7 @@ from game.util import Util
 from game.dictionary import Dictionary
 
 
+
 TRIPLE_WORD_SCORE = ((0,0),(7,0),(14,0),(0,7),(14,7),(0,14),(7,14),(14,14))
 DOUBLE_WORD_SCORE = ((1,1),(2,2),(3,3),(4,4),(10,10),(11,11),(12,12),(13,13),(1,13),(2,12),(3,11),(4,10),(7,7),(13,1),(12,2),(11,3),(10,4))
 TRIPLE_LETTER_SCORE = ((1,5),(1,9),(5,1),(5,5),(5,9),(5,13),(9,1),(9,5),(9,9),(9,13),(13,5),(13,9))
@@ -21,6 +22,8 @@ class Board:
         self.is_empty = None
         self.util = Util()
         self.dict = Dictionary
+        
+        
         
 
     def update_position(self, orientation):
@@ -41,9 +44,15 @@ class Board:
 
 
     def is_out_of_bounds(self, row, col):
-        return not (0 <= row < len(self.grid)) or not (0 <= col < len(self.grid[0]))
 
-
+        if row < 0 or row >= len(self.grid):
+            return True
+        
+        if col < 0 or col >= len(self.grid[0]):
+            return True
+        
+        return False
+    
 
     def transform_word_to_upper(self, word):
         return [letter.upper() for letter in word] if self.util.is_word_list(word) else word.upper()
@@ -61,7 +70,20 @@ class Board:
         if self.util.is_word_letters(self.mletter):
             self.mletter = [l for l in self.mletter if l != letter]
         else:
-            self.mletter = ''.join(l for l in self.mletter if l != letter)
+            modified_mletter = []
+            for l in self.mletter:
+                if l != letter:
+                    modified_mletter.append(l)
+            self.mletter = ''.join(modified_mletter)
+
+    
+    def check_position(self, word, row, col, orientation):
+        if (row, col) == (7, 7):
+            return True
+        if not word:
+            return False
+        row_offset, col_offset = (0, 1) if orientation == "H" else (1, 0)
+        return self.check_position(word[1:], row + row_offset, col + col_offset, orientation)
 
 
 
@@ -75,9 +97,7 @@ class Board:
         for coordinate in DOUBLE_LETTER_SCORE:
             self.set_cell_multiplier(coordinate, "L", 2)
 
-    
-
-
+   
     def validate_word_inside_board(self, word, location, orientation):
         word = self.transform_word_to_upper(word)
         
@@ -93,28 +113,17 @@ class Board:
             return False
 
 
-
-
-
     def empty(self):
         # Verifica si el tablero está vacío
         self.is_empty = self.grid[7][7].letter is None
 
 
+    
     def validate_word_center(self, orientation):
         if (self.position_row, self.position_col) == (7, 7):
             return True
-    
-        row_offset, col_offset = (0, 1) if orientation == "H" else (1, 0)
 
-        for i in self.word:
-            self.position_row += row_offset
-            self.position_col += col_offset
-            if (self.position_row, self.position_col) == (7, 7):
-                return True
-
-        return False
-    
+        return self.check_position(self.word, self.position_row, self.position_col, orientation)
 
 
     def is_adjacent_to_tile(self, row, col):
@@ -126,7 +135,6 @@ class Board:
                 if 0 <= r < 15 and 0 <= c < 15 and self.grid[r][c].letter is not None:
                     return True
         return False
-
 
 
     def validate_word_placement(self, word, location, orientation):
@@ -149,19 +157,26 @@ class Board:
 
     def validate_word_placement_in_occupied_grid(self, orientation):
         row, col = self.position_row, self.position_col
+        word_iterator = iter(self.word)
 
-        for letter in self.word:
+        while True:
             if self.is_out_of_bounds(row, col):
                 return False
 
             cell = self.grid[row][col]
+            letter = next(word_iterator, None)
+
+            if letter is None:
+                break
 
             if cell.letter is not None and letter != cell.letter.letter:
                 return False
 
             self.modify_letter(letter)
-            
             row, col = self.update_position(orientation)
+
+        if any(word_iterator):
+            return False
 
         return True
 
