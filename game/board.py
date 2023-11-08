@@ -166,39 +166,37 @@ class Board:
         return True
 
 
-    
+
+
     def show_board(self):
         def colored(text, color):
             colors = {
                 'reset': '\033[0m',
                 'green': '\033[92m',
-                'blue': '\033[94m',
+                'purple': '\033[94m',
             }
             return f"{colors[color]}{text}{colors['reset']}"
 
-        board_str = "   |  " + "  |  ".join(str(item) for item in range(10)) + "  | " + "  | ".join(str(item) for item in range(10, 15)) + " |"
-        board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n"
+        board_str = "   ║  " + "  ║  ".join(str(item) for item in range(10)) + "  ║ " + "  ║ ".join(str(item) for item in range(10, 15)) + " ║"
+        board_str += "\n   ═══════════════════════════════════════════════════════════════════════════════════════════\n"
         board = list(self.grid)
         for i in range(len(board)):
             if i < 10:
-                board[i] = f"{i}  | {' | '.join(map(str, board[i]))} |"
+                board[i] = f"{i}  ║ {' ║ '.join(map(str, board[i]))} ║"
             if i >= 10:
-                board[i] = str(i) + " | " + " | ".join(str(item) for item in board[i]) + " |"
+                board[i] = str(i) + " ║ " + " ║ ".join(str(item) for item in board[i]) + " ║"
 
         
         for i in range(len(board)):
             if i % 2 == 0:
-                board[i] = colored(board[i], 'blue')
+                board[i] = colored(board[i], 'purple')
             else:
                 board[i] = colored(board[i], 'green')
 
-        board_str += "\n   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|\n".join(board)
-        board_str += "\n   _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
+        board_str += "\n   ║═════════════════════════════════════════════════════════════════════════════════════════║\n".join(board)
+        board_str += "\n   ═══════════════════════════════════════════════════════════════════════════════════════════"
         print(board_str)
 
-
-
-    
 
 
     def validate_word_place_board(self, word, location, orientation):
