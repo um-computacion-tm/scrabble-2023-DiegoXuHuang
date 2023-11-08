@@ -210,20 +210,18 @@ class ScrabbleGame:
 
 
 
-    
     def place_word_on_board(self, word, location, orientation):
-        valid_word = self.validate_word(word, location, orientation)
+        check_word = self.validate_word(word, location, orientation)
         row, col = location
 
-        if valid_word:
-            if isinstance(word, list):
-                word = [letter.upper() for letter in word]
-            else:
-                word = word.upper()
-
+        if check_word:
+            board = Board()  
+            word = board.transform_word_to_upper(word)
+            
             for letter in word:
                 self.place_letter_on_board(letter, row, col)
                 row, col = self.util.update_coordinates(orientation, row, col)
+
 
 
     def validate_and_score_word(self, word, location, orientation):
