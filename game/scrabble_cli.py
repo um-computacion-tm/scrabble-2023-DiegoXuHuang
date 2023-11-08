@@ -264,10 +264,10 @@ class ScrabbleCli:
         while True:
             try:
                 value = int(input(prompt))
-                if min_value <= value < max_value:
+                if min_value <= value <= max_value:
                     return value
                 else:
-                    print(f"Entrada no válida. Por favor, ingrese un número entre {min_value} y {max_value - 1}.")
+                    print(f"Entrada no válida. Por favor, ingrese un número entre {min_value} y {max_value}.")
             except ValueError:
                 print("Entrada no válida. Por favor, ingrese un número válido.")
 
