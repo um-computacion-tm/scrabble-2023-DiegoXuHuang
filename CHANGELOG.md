@@ -6,7 +6,12 @@ All notable changes to this project will be documented in this file
 
 ### END
 
-### changed
+### Fixex
+
+
+- fix show tile
+
+### Changed
 
 
 - improved showboard
