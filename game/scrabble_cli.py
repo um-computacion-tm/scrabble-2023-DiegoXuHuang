@@ -64,16 +64,14 @@ class ScrabbleCli:
     │ 3. Cada letra tiene un valor en         │
     │    puntos, y el objetivo es maximizar   │
     │    la puntuación.                       │
-    │ 4. Cada jugador comienza con un         │
-    │    conjunto de fichas al azar.          │
-    │ 5. Los jugadores alternan turnos        │
+    │ 4. Los jugadores alternan turnos        │
     │    para formar palabras en el tablero.  │
-    │ 6. Las palabras puede conectarse a      │
+    │ 5. Las palabras puede conectarse a      │
     │    otras palabras en el tablero.        │
-    │ 7. El juego termina cuando se agotan    │
+    │ 6. El juego termina cuando se agotan    │
     │    las fichas o cuando un jugador no    │
     │    puede formar palabras.               │
-    │ 8. El ganador es el jugador con la      │
+    │ 7. El ganador es el jugador con la      │
     │    puntuación más alta al final del     │
     │    juego.                               │
     │                                         │
@@ -199,7 +197,8 @@ class ScrabbleCli:
             print("Fichas del jugador:")
             print("╔═════════════╗")
             for i, tile in enumerate(tiles):
-                print("║ {:2d}. {}     ║".format(i, tile))
+                tile_str = "{:2d}. {}".format(i, tile)
+                print("║ {:<12}║".format(tile_str))
             print("╚═════════════╝")
         else:
             print("El jugador no tiene Fichas.")
