@@ -179,6 +179,9 @@ class TestBoard(unittest.TestCase):
         self.assertTrue(scrabble.is_adjacent_to_tile(7, 8))  # Derecha
 
 
+   
+
+
 
 
     def test_show_board(self):
