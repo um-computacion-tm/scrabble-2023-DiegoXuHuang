@@ -197,12 +197,12 @@ class ScrabbleCli:
             print("Fichas del jugador:")
             print("╔═════════════╗")
             for i, tile in enumerate(tiles):
-                tile_str = "{:2d}. {}".format(i, tile)
+                tile_str = str(tile)  
+                tile_str = "{:2d}. {:<5}".format(i, tile_str)
                 print("║ {:<12}║".format(tile_str))
             print("╚═════════════╝")
         else:
             print("El jugador no tiene Fichas.")
-
 
 
     
